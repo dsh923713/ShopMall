@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ShopMall</string>
+
+    <string name="goods_name">请输入商品名称</string>
+    <string name="news">消息</string>
+    <string name="home">首页</string>
+    <string name="classify">分类</string>
+    <string name="special_offer">特价</string>
+    <string name="shopping_trolley">购物车</string>
+    <string name="myself">我的</string>
+</resources>
