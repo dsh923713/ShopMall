@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey"
     android:orientation="vertical"
-    android:padding="5dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/iv_head"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@mipmap/im1" />
@@ -14,6 +17,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp">
 
         <TextView
@@ -25,10 +29,16 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/tv_rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="№ 排行榜 >"
+            android:visibility="gone"
+            android:text="@string/rank"
+            android:gravity="center"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@mipmap/ic_rank"
+            android:drawableRight="@mipmap/ic_right"
             android:textColor="@color/gary"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -36,6 +46,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_item_classify"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white" />
 </LinearLayout>

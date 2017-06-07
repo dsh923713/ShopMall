@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rb_name"
+    android:id="@+id/tv_name"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="15dp"
@@ -9,7 +9,7 @@
     android:gravity="center"
     android:textColor="@color/black"
     android:text="推荐分类"
-    android:background="@drawable/lv_item_color"
+    android:background="@drawable/rv_classify_left_color"
     android:textSize="14sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

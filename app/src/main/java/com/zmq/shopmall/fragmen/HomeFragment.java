@@ -1,6 +1,5 @@
 package com.zmq.shopmall.fragmen;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -12,22 +11,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jaeger.library.StatusBarUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
-import com.youth.banner.loader.ImageLoader;
 import com.zmq.shopmall.R;
+import com.zmq.shopmall.activity.GoodsDetailsActivity;
 import com.zmq.shopmall.adapter.HomeAdapter;
 import com.zmq.shopmall.adapter.SortButtonAdapter;
 import com.zmq.shopmall.base.BaseFragment;
 import com.zmq.shopmall.bean.ButtonBean;
 import com.zmq.shopmall.bean.HomeChlidBean;
 import com.zmq.shopmall.bean.HomeItemBean;
+import com.zmq.shopmall.utils.GlideImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,6 +93,7 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 showShortToast("onItemChildClick" + position);
+                startActivity(GoodsDetailsActivity.class);
             }
         });
     }
@@ -272,21 +271,4 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         srlHome.setRefreshing(false);
     }
 
-
-    /**
-     * 重写imageloader
-     */
-    public class GlideImageLoader extends ImageLoader {
-        @Override
-        public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load((int) path).into(imageView);
-        }
-        //提供createImageView 方法，如果不用可以不重写这个方法，主要是方便自定义ImageView的创建
-//        @Override
-//        public ImageView createImageView(Context context) {
-//            //使用fresco，需要创建它提供的ImageView，当然你也可以用自己自定义的具有图片加载功能的ImageView
-//            SimpleDraweeView simpleDraweeView=new SimpleDraweeView(context);
-//            return simpleDraweeView;
-//        }
-    }
 }
