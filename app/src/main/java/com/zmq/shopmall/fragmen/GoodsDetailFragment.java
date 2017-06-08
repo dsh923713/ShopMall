@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zmq.shopmall.R;
 import com.zmq.shopmall.base.BaseFragment;
 
 /**
@@ -16,7 +17,8 @@ import com.zmq.shopmall.base.BaseFragment;
 public class GoodsDetailFragment extends BaseFragment {
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return null;
+        view = inflater.inflate(R.layout.include_item_tab,container,false);
+        return view;
     }
 
     @Override

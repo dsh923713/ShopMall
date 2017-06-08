@@ -9,4 +9,31 @@
     <string name="shopping_trolley">购物车</string>
     <string name="myself">我的</string>
     <string name="rank">排行榜</string>
+    
+    <string name="spot_goods">现货</string>
+    <string name="all_comment">查看全部评价</string>
+    <string name="no_comment">暂无评价...</string>
+    <string name="someone_question">有疑问？问问买过的人吧！</string>
+    <string name="goods">商品</string>
+    <string name="serve">服务</string>
+    <string name="logistics">物流</string>
+    <string name="follow_num">关注人数</string>
+    <string name="all_goods">全部商品</string>
+    <string name="shop_status">店铺动态</string>
+    <string name="contact_server">联系客服</string>
+    <string name="into_shop">进入店铺</string>
+    <string name="of_you_recommend">为你推荐</string>
+    <string name="examine_more_recommend">查看更多为你推荐</string>
+    <string name="examine_full_rank">查看完整排行榜</string>
+    <string name="examine_image_text_details">上拉查看图文详情</string>
+    <string name="goods_introduce">商品介绍</string>
+    <string name="specification_parameter">规格参数</string>
+    <string name="packaging_after_sale">包装售后</string>
+    <string name="contact_the_seller">联系卖家</string>
+    <string name="shop">店铺</string>
+    <string name="follow">关注</string>
+    <string name="into_shopping_trolley">加入购物车</string>
+
+
+    <string name="pageBehavior" translatable="false" >com.zmq.shopmall.widget.PageBehavior</string >
 </resources>
