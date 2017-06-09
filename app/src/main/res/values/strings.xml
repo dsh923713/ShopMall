@@ -9,7 +9,9 @@
     <string name="shopping_trolley">购物车</string>
     <string name="myself">我的</string>
     <string name="rank">排行榜</string>
-    
+
+    <!--商品详情-->
+    <string name="image_text_details">图文详情</string>
     <string name="spot_goods">现货</string>
     <string name="all_comment">查看全部评价</string>
     <string name="no_comment">暂无评价...</string>
@@ -34,6 +36,11 @@
     <string name="follow">关注</string>
     <string name="into_shopping_trolley">加入购物车</string>
 
-
-    <string name="pageBehavior" translatable="false" >com.zmq.shopmall.widget.PageBehavior</string >
+    <!--评价-->
+    <string name="only_look_this_goods">只看当前商品</string>
+    <string name="all_comments">全部评价</string>
+    <string name="good_comment">好评</string>
+    <string name="middle_comment">中评</string>
+    <string name="low_comment">差评</string>
+    <string name="image_comment">有图</string>
 </resources>

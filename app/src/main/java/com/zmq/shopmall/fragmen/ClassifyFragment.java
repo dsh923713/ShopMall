@@ -65,7 +65,7 @@ public class ClassifyFragment extends BaseFragment {
                 rvClassifyLeft.scrollToPosition(position);
                 leftAdapter.selectPosition(position);
                 leftAdapter.notifyDataSetChanged();
-                rightAdapter.notifyDataSetChanged();
+//                rightAdapter.notifyDataSetChanged();
             }
         });
         rightAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() { //右侧子布局点击事件

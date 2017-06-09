@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
+import com.jaeger.library.StatusBarUtil;
+import com.zmq.shopmall.R;
 import com.zmq.shopmall.utils.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -35,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (null != extras) {
             getBundleExtras(extras);
         }
+        StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.black));
         context = this;
 //        toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        tv_left = (TextView) findViewById(R.id.tv_toolbar_back);
