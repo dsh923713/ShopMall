@@ -38,7 +38,7 @@ import fj.mtsortbutton.lib.Interface.IDynamicSore;
  * Created by Administrator on 2017/6/5.
  */
 
-public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBean>,SwipeRefreshLayout.OnRefreshListener {
+public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBean>, SwipeRefreshLayout.OnRefreshListener {
     @BindView(R.id.rv_home)
     RecyclerView rvHome; //商品列表
     @BindView(R.id.srl_home)
@@ -83,8 +83,8 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         dynamicSoreView.setGridView(R.layout.rv_item_vp).init(buttonList);
         rvHome.setLayoutManager(new GridLayoutManager(activity, 2));
         srlHome.setOnRefreshListener(this);
-        srlHome.setColorSchemeColors(ContextCompat.getColor(activity,android.R.color.holo_blue_light),
-                ContextCompat.getColor(activity, android.R.color.holo_red_light),ContextCompat.getColor(activity, android.R.color.holo_orange_light));
+        srlHome.setColorSchemeColors(ContextCompat.getColor(activity, android.R.color.holo_blue_light),
+                ContextCompat.getColor(activity, android.R.color.holo_red_light), ContextCompat.getColor(activity, android.R.color.holo_orange_light));
         adapter = new HomeAdapter(R.layout.rv_item_child_classify_home, R.layout.rv_item_child_head, data);
         adapter.addHeaderView(headItem);
         adapter.addHeaderView(headClassify);
@@ -214,12 +214,13 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
 
     /**
      * 设置分类中GridView内参数及点击事件
+     *
      * @param view
      * @param i
      * @param list
      */
     @Override
-    public void setGridView(View view, int i, List<ButtonBean> list) {
+    public void setGridView(View view, final int i, final List<ButtonBean> list) {
         GridView gv_item = (GridView) view.findViewById(R.id.gv_item);
         dynamicSoreView.setNumColumns(gv_item);
         SortButtonAdapter adapter = new SortButtonAdapter(activity, list);
@@ -227,7 +228,7 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         gv_item.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                showShortToast("点击"+position);
+                showShortToast(list.get(position).getName());
             }
         });
     }

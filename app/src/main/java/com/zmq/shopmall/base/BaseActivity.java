@@ -1,12 +1,16 @@
 package com.zmq.shopmall.base;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.zmq.shopmall.R;
@@ -20,8 +24,8 @@ import butterknife.Unbinder;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-//    protected Toolbar toolbar;
-//    protected TextView tv_left, tv_title, tv_right;
+    protected Toolbar toolbar;
+    protected TextView tv_left, tv_title, tv_right;
     protected BaseActivity context;
     private int resId;
     private Unbinder unbinder;
@@ -40,15 +44,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         StatusBarUtil.setColor(this, ContextCompat.getColor(this, R.color.black));
         context = this;
-//        toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        tv_left = (TextView) findViewById(R.id.tv_toolbar_back);
-//        tv_title = (TextView) findViewById(R.id.tv_toolbar_title);
-//        tv_right = (TextView) findViewById(R.id.tv_toolbar_right);
-//        if (toolbar != null) {
-//            setSupportActionBar(toolbar);
-//            getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        }
-//        setStatusBar(Color.BLACK);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tv_left = (TextView) findViewById(R.id.tv_toolbar_back);
+        tv_title = (TextView) findViewById(R.id.tv_toolbar_title);
+        tv_right = (TextView) findViewById(R.id.tv_toolbar_right);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         initContentView(savedInstanceState);
         unbinder = ButterKnife.bind(this); //绑定注解
         initView();
@@ -70,13 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @param colorId
      */
-//    public void setStatusBar(int colorId) {
-//        if (colorId != Color.BLACK) {
-//            StatusBarCompat.compat(this, colorId);
-//        } else {
-//            StatusBarCompat.compat(this, Color.BLACK);
-//        }
-//    }
 
 
     /**
@@ -86,33 +82,33 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param msg
      * @param listener
      */
-//    public void setLeftIcon(int resId, String msg, View.OnClickListener listener) {
-//        tv_left.setVisibility(View.VISIBLE);
-//        if (msg != null) {
-//            tv_left.setText(msg);
-//        }
-//        if (resId != 0){
-//            Drawable drawable = ContextCompat.getDrawable(this, resId);
-//            // 这一步必须要做,否则不会显示.
-//            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-//            tv_left.setCompoundDrawables(drawable, null, null, null);
-//        }
-//        if (listener != null) {
-//            tv_left.setOnClickListener(listener);
-//        }
-//    }
+    public void setLeftIcon(int resId, String msg, View.OnClickListener listener) {
+        tv_left.setVisibility(View.VISIBLE);
+        if (msg != null) {
+            tv_left.setText(msg);
+        }
+        if (resId != 0){
+            Drawable drawable = ContextCompat.getDrawable(this, resId);
+            // 这一步必须要做,否则不会显示.
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            tv_left.setCompoundDrawables(drawable, null, null, null);
+        }
+        if (listener != null) {
+            tv_left.setOnClickListener(listener);
+        }
+    }
 
     /**
      * 设置标题
      *
      * @param title
      */
-//    public void setTitle(String title) {
-//        if (title != null) {
-//            tv_title.setVisibility(View.VISIBLE);
-//            tv_title.setText(title);
-//        }
-//    }
+    public void setTitle(String title) {
+        if (title != null) {
+            tv_title.setVisibility(View.VISIBLE);
+            tv_title.setText(title);
+        }
+    }
 
     /**
      * 设置标题栏右控件
@@ -121,19 +117,19 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param msg
      * @param listener
      */
-//    public void setRightIcon(int resId, String msg, View.OnClickListener listener) {
-//        tv_right.setVisibility(View.VISIBLE);
-//        Drawable drawable = ContextCompat.getDrawable(this, resId);
-//        if (msg != null) {
-//            tv_right.setText(msg);
-//        }
-//        // 这一步必须要做,否则不会显示.
-//        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-//        tv_right.setCompoundDrawables(drawable, null, null, null);
-//        if (listener != null) {
-//            tv_right.setOnClickListener(listener);
-//        }
-//    }
+    public void setRightIcon(int resId, String msg, View.OnClickListener listener) {
+        tv_right.setVisibility(View.VISIBLE);
+        if (msg != null) {
+            tv_right.setText(msg);
+        }
+        Drawable drawable = ContextCompat.getDrawable(this, resId);
+        // 这一步必须要做,否则不会显示.
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tv_right.setCompoundDrawables(drawable, null, null, null);
+        if (listener != null) {
+            tv_right.setOnClickListener(listener);
+        }
+    }
 
     /**
      * Toast显示

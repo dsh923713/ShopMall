@@ -1,4 +1,4 @@
-package com.zmq.shopmall.utils;
+package com.zmq.shopmall.widget;
 
 import android.app.Activity;
 import android.content.Context;

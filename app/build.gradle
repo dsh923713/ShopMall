@@ -47,6 +47,8 @@ dependencies {
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.18'
     //头部tab
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
-    //几种popupwindow用法
-    compile 'com.github.pinguo-zhouwei:CustomPopwindow:2.0.0'
+    //仿美团定位城市选择
+    compile 'com.zaaach:citypicker:1.1'
+    //隐藏输入键盘
+    compile 'com.yinglan.keyboard:hidekeyboard:1.1.0'
 }

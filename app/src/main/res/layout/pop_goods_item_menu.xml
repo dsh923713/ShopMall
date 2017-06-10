@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zmq.shopmall.widget.ArrowRectangleView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:splitMotionEvents="false"
+    app:arrow_height="8dp"
+    app:arrow_offset="31dp"
+    app:arrow_width="16dp"
+    app:background_color="@color/translucent1"
+    app:radius="3dp"
+    app:shadow_color="@color/transparent"
+    app:shadow_thickness="5dp">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_news"
+        android:drawablePadding="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/news"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:id="@+id/tv_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_home_white"
+        android:drawablePadding="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/home"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:id="@+id/tv_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_search_white"
+        android:drawablePadding="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/search"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:id="@+id/tv_my_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_follow_white"
+        android:drawablePadding="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/my_follow"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/line_color" />
+
+    <TextView
+        android:id="@+id/tv_browsing_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_browsing_history"
+        android:drawablePadding="10dp"
+        android:paddingRight="30dp"
+        android:text="@string/browsing_history"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+</LinearLayout>
+</com.zmq.shopmall.widget.ArrowRectangleView>

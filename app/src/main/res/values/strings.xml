@@ -43,4 +43,13 @@
     <string name="middle_comment">中评</string>
     <string name="low_comment">差评</string>
     <string name="image_comment">有图</string>
+
+    <!--menu-->
+    <string name="search">搜索</string>
+    <string name="my_follow">我的关注</string>
+    <string name="browsing_history">浏览记录</string>
+
+    <string name="hot_search">热搜</string>
+    <string name="subscription">订阅号</string>
+    <string name="nologin">立即登录查看更多信息</string>
 </resources>

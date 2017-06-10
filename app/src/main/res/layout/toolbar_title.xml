@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue"
+        android:background="@color/white"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/tv_toolbar_title"
@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:visibility="gone"
             android:maxLines="1"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"/>
         <TextView
             android:id="@+id/tv_toolbar_right"
@@ -39,6 +39,6 @@
             android:gravity="center"
             android:drawablePadding="5dp"
             android:visibility="gone"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
     </android.support.v7.widget.Toolbar>
 </FrameLayout>
