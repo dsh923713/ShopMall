@@ -26,9 +26,11 @@ public class NewsActivity extends BaseActivity {
     @BindView(R.id.tv_subscription)
     TextView tvSubscription; //订阅号
 
-    private boolean isNews; //是否选中消息
+    private boolean isNews = true; //是否选中消息
     private boolean isSubscription; //是否选中订阅号
     private Drawable drawable; //图片切换
+
+
 
     public NewsActivity() {
         super(R.layout.activity_news);
@@ -50,8 +52,12 @@ public class NewsActivity extends BaseActivity {
            }
         });
 
-        tvNews.setClickable(false);
+        tvNews.setClickable(false);//默认选中消息，先禁用其点击
     }
+
+
+
+
     @OnClick({R.id.tv_no_login,R.id.tv_news,R.id.tv_subscription})
     void onClick(View v){
         switch (v.getId()){
@@ -76,6 +82,9 @@ public class NewsActivity extends BaseActivity {
         isNewsOrSubscription();
     }
 
+    /**
+     * 判断点击的是消息还是订阅号
+     */
     private void isNewsOrSubscription() {
         if (isNews){
             tvNews.setTextColor(ContextCompat.getColor(this, R.color.red));

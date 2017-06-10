@@ -47,6 +47,9 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
     private Banner banner; //轮播控件
     private View headClassify;//头布局2--分类
     private DynamicSoreView dynamicSoreView;//分类控件
+    private View footRecommend; //推荐列表
+    private RecyclerView rvFoot;
+
 
 
     private List<Integer> imageId;//图标集合
@@ -77,6 +80,10 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         banner = (Banner) headItem.findViewById(R.id.banner);
         headClassify = View.inflate(activity, R.layout.rv_item_classify_head, null);
         dynamicSoreView = (DynamicSoreView) headClassify.findViewById(R.id.dynamicSoreView);
+        footRecommend = View.inflate(activity,R.layout.rv_item_home_foot,null);
+        rvFoot = (RecyclerView) footRecommend.findViewById(R.id.rv_home_foot);
+
+
         //设置界面监听
         dynamicSoreView.setiDynamicSore(this);
         //控件相关设置
@@ -88,6 +95,7 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         adapter = new HomeAdapter(R.layout.rv_item_child_classify_home, R.layout.rv_item_child_head, data);
         adapter.addHeaderView(headItem);
         adapter.addHeaderView(headClassify);
+        adapter.addFooterView(footRecommend);
         rvHome.setAdapter(adapter);
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
