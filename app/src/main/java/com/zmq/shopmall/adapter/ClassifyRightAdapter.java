@@ -24,7 +24,7 @@ public class ClassifyRightAdapter extends BaseQuickAdapter<ClassifyRightBean, Ba
     }
 
     @Override
-    protected void convert(BaseViewHolder holder, ClassifyRightBean item) {
+    protected void convert(BaseViewHolder holder, final ClassifyRightBean item) {
         if (item.isTop()) { //头部banner
             holder.setVisible(R.id.iv_head, true);
             holder.setImageResource(R.id.iv_head, item.getImageId());
@@ -42,7 +42,7 @@ public class ClassifyRightAdapter extends BaseQuickAdapter<ClassifyRightBean, Ba
         itemAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showLongToast(mContext,position+"");
+                ToastUtils.showLongToast(mContext,item.getRightItemList().get(position).getTitle()+"");
             }
         });
     }

@@ -8,13 +8,32 @@ public class RecommendBean {
     private int image;
     private String title;
     private double price;
-    private String findSimilar;
+    private boolean isFindSimilar;
+    private boolean isShopTrolley;
 
-    public RecommendBean(int image, String title, double price, String findSimilar) {
+    public RecommendBean(int image, String title, double price, boolean isFindSimilar, boolean isShopTrolley) {
         this.image = image;
         this.title = title;
         this.price = price;
-        this.findSimilar = findSimilar;
+        this.isFindSimilar = isFindSimilar;
+        this.isShopTrolley = isShopTrolley;
+    }
+
+
+    public boolean isShopTrolley() {
+        return isShopTrolley;
+    }
+
+    public void setShopTrolley(boolean shopTrolley) {
+        isShopTrolley = shopTrolley;
+    }
+
+    public boolean isFindSimilar() {
+        return isFindSimilar;
+    }
+
+    public void setFindSimilar(boolean findSimilar) {
+        isFindSimilar = findSimilar;
     }
 
     public int getImage() {
@@ -39,13 +58,5 @@ public class RecommendBean {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getFindSimilar() {
-        return findSimilar;
-    }
-
-    public void setFindSimilar(String findSimilar) {
-        this.findSimilar = findSimilar;
     }
 }

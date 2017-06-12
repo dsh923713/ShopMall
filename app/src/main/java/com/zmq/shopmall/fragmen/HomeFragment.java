@@ -20,11 +20,13 @@ import com.youth.banner.Transformer;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.activity.GoodsDetailsActivity;
 import com.zmq.shopmall.adapter.HomeAdapter;
+import com.zmq.shopmall.adapter.HomeFootAdapter;
 import com.zmq.shopmall.adapter.SortButtonAdapter;
 import com.zmq.shopmall.base.BaseFragment;
 import com.zmq.shopmall.bean.ButtonBean;
 import com.zmq.shopmall.bean.HomeChlidBean;
 import com.zmq.shopmall.bean.HomeItemBean;
+import com.zmq.shopmall.bean.RecommendBean;
 import com.zmq.shopmall.utils.GlideImageLoader;
 
 import java.util.ArrayList;
@@ -51,11 +53,12 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
     private RecyclerView rvFoot;
 
 
-
     private List<Integer> imageId;//图标集合
     private List<HomeItemBean> data; //首页数据
     private List<ButtonBean> buttonList; //分类按钮数据
     private HomeAdapter adapter;//首页recycleview适配器
+    private List<RecommendBean> footData;
+    private HomeFootAdapter homeFootAdapter;
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
     protected void initView(View view) {
         setData();
         setButtonData();
+        setFootData();
         findViewId();
         setBanner();
     }
@@ -80,9 +84,25 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         banner = (Banner) headItem.findViewById(R.id.banner);
         headClassify = View.inflate(activity, R.layout.rv_item_classify_head, null);
         dynamicSoreView = (DynamicSoreView) headClassify.findViewById(R.id.dynamicSoreView);
-        footRecommend = View.inflate(activity,R.layout.rv_item_home_foot,null);
+        footRecommend = View.inflate(activity, R.layout.rv_item_home_foot, null);
         rvFoot = (RecyclerView) footRecommend.findViewById(R.id.rv_home_foot);
 
+
+        rvFoot.setLayoutManager(new GridLayoutManager(activity, 2));
+        homeFootAdapter = new HomeFootAdapter(footData);
+        rvFoot.setAdapter(homeFootAdapter);
+        homeFootAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                startActivity(GoodsDetailsActivity.class);
+            }
+        });
+        homeFootAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                showShortToast("找相似");
+            }
+        });
 
         //设置界面监听
         dynamicSoreView.setiDynamicSore(this);
@@ -275,6 +295,23 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
         imageId.add(R.mipmap.im4);
     }
 
+    /**
+     * 底部模拟数据
+     */
+
+    private void setFootData(){
+        footData = new ArrayList<>();
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,true,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,false,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,true,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,true,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,false,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,true,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,true,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,false,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,false,false));
+        footData.add(new RecommendBean(R.mipmap.ic_timg,"Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色",152.00,false,false));
+    }
     @Override
     public void onRefresh() {
         srlHome.setRefreshing(false);

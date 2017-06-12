@@ -28,6 +28,7 @@ import com.youth.banner.Transformer;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.activity.GoodsDetailsActivity;
 import com.zmq.shopmall.base.BaseFragment;
+import com.zmq.shopmall.bean.RecommendBean;
 import com.zmq.shopmall.utils.GlideImageLoader;
 import com.zmq.shopmall.widget.SlideDetailsLayout;
 
@@ -126,6 +127,8 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
     private FragmentManager fragmentManager; //fragment管理器
     private GoodsDetailWebFragment goodsDetailWebFragment; //图文介绍
     private List<Integer> imageId;//图标集合
+    private List<RecommendBean> recommendBeanList = new ArrayList<>();
+    private List<RecommendBean> rankList = new ArrayList<>();
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -147,6 +150,8 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
      */
     private void SetListener() {
         sv_switch.setOnSlideDetailsListener(this);
+        tvOfYouRecommend.setOnClickListener(this);
+        tvRank.setOnClickListener(this);
         fabUpSlide.setOnClickListener(this);
         tvExamineImage.setOnClickListener(this);
     }
@@ -267,6 +272,10 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_of_you_recommend:
+                break;
+            case R.id.tv_rank:
+                break;
             case R.id.fab_up_slide:
                 //点击滑动到顶部
                 nsvGoods.smoothScrollTo(0, 0);

@@ -1,11 +1,11 @@
 package com.zmq.shopmall.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jpeng.jptabbar.JPTabBar;
@@ -15,10 +15,17 @@ import com.zmq.shopmall.R;
 import com.zmq.shopmall.base.BaseActivity;
 import com.zmq.shopmall.fragmen.ClassifyFragment;
 import com.zmq.shopmall.fragmen.HomeFragment;
+import com.zmq.shopmall.fragmen.ShopTrolleyFragment;
 
 import butterknife.BindView;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
+    @BindView(R.id.tv_title_name)
+    TextView tvTitleName;
+    @BindView(R.id.iv_news)
+    ImageView ivNews;
+    @BindView(R.id.index_title_bar)
+    LinearLayout indexTitleBar;
     private JPTabBar mTabbar; //底部Tab
     @BindView(R.id.tv_city)
     TextView tvCity;//定位城市
@@ -26,8 +33,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     TextView tvTitle;//搜索商品
     @BindView(R.id.tv_news)
     TextView tvNews; //消息
-    @BindView(R.id.index_title_bar)
-    RelativeLayout indexTitleBar; //顶部搜索栏
+
+
+    private HomeFragment homeFragment;
+    private ClassifyFragment classifyFragment;
+    private ShopTrolleyFragment shopTrolleyFragment;
 
     private static final int resId = R.id.content;
     private static final int REQUEST_CODE_PICK_CITY = 1;
@@ -39,10 +49,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initView() {
-        setBottomTab();
         tvCity.setOnClickListener(this);
         tvTitle.setOnClickListener(this);
         tvNews.setOnClickListener(this);
+        ivNews.setOnClickListener(this);
+        homeFragment = new HomeFragment();
+        classifyFragment = new ClassifyFragment();
+        shopTrolleyFragment = new ShopTrolleyFragment();
+        setBottomTab();
     }
 
     /**
@@ -56,25 +70,45 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         .ic_shopping_trolley_selected, R.mipmap.ic_myself_selected)
                 .generate();
         mTabbar.setSelectedColor(ContextCompat.getColor(this, R.color.red));
-        replaceFragment(resId, new HomeFragment());
+        replaceFragment(resId, homeFragment);
         mTabbar.setTabListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int index) {
                 switch (index) {
                     case 0:  //首页
-                        replaceFragment(resId, new HomeFragment());
+                        replaceFragment(resId, homeFragment);
+                        setLeftIcon(true);
+                        setTitle("");
+                        setRightIcon(true);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.blue));
                         break;
                     case 1:  //分类
-                        replaceFragment(resId, new ClassifyFragment());
+                        replaceFragment(resId, classifyFragment);
+                        setLeftIcon(true);
+                        setTitle("");
+                        setRightIcon(true);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.blue));
                         break;
                     case 2:  //特惠
                         replaceFragment(resId, new HomeFragment());
+                        setLeftIcon(true);
+                        setTitle("");
+                        setRightIcon(true);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.colorAccent));
                         break;
                     case 3:  //购物车
-                        replaceFragment(resId, new HomeFragment());
+                        replaceFragment(resId, shopTrolleyFragment);
+                        setLeftIcon(false);
+                        setTitle("购物车");
+                        setRightIcon(false);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.white));
                         break;
                     case 4:  //我的
                         replaceFragment(resId, new HomeFragment());
+                        setLeftIcon(true);
+                        setTitle("");
+                        setRightIcon(true);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.translucent));
                         break;
                     default:
                         break;
@@ -85,72 +119,59 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * 设置标题栏左侧按键
-     *
-     * @param resId
-     * @param msg
      */
-    public void setLeftIcon(int resId, String msg) {
-        if (resId == 0 && TextUtils.isEmpty(msg)) {
+    public void setLeftIcon(boolean isShow) {
+        if (isShow) {
+            tvCity.setVisibility(View.VISIBLE);
+        } else {
             tvCity.setVisibility(View.GONE);
-            return;
-        }
-        tvCity.setVisibility(View.VISIBLE);
-        tvCity.setText(msg);
-        if (resId != 0) {
-            Drawable drawable = ContextCompat.getDrawable(this, resId);
-            // 这一步必须要做,否则不会显示.
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvCity.setCompoundDrawables(null, drawable, null, null);
         }
     }
+
 
     /**
      * 设置标题
      *
      * @param title
      */
-    public void setTitle(int resId, String title) {
-        if (resId != 0) {
-            tvTitle.setVisibility(View.VISIBLE);
-            tvTitle.setBackgroundResource(resId);
-        }
+    public void setTitle(String title) {
         if (!TextUtils.isEmpty(title)) {
+            tvTitle.setVisibility(View.GONE);
+            tvTitleName.setVisibility(View.VISIBLE);
+            tvTitleName.setText(title);
+        } else {
             tvTitle.setVisibility(View.VISIBLE);
-            tvTitle.setText(title);
+            tvTitleName.setVisibility(View.GONE);
         }
     }
 
+
     /**
      * 设置标题栏右控件
-     *
-     * @param resId
-     * @param msg
      */
-    public void setRightIcon(int resId, String msg) {
-        if (resId == 0 && TextUtils.isEmpty(msg)) {
+    public void setRightIcon(boolean isShow) {
+        if (isShow) {
+            tvNews.setVisibility(View.VISIBLE);
+            ivNews.setVisibility(View.GONE);
+        } else {
             tvNews.setVisibility(View.GONE);
-            return;
-        }
-        tvNews.setVisibility(View.VISIBLE);
-        tvNews.setText(msg);
-        if (resId != 0) {
-            // 这一步必须要做,否则不会显示.
-            Drawable drawable = ContextCompat.getDrawable(this, resId);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            tvNews.setCompoundDrawables(null, drawable, null, null);
+            ivNews.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_city:
+            case R.id.tv_city: //左侧定位
                 startActivityForResult(CityPickerActivity.class, REQUEST_CODE_PICK_CITY);
                 break;
-            case R.id.tv_title:
+            case R.id.tv_title: //中间标题/搜索栏
                 startActivity(SearchActivity.class);
                 break;
-            case R.id.tv_news:
+            case R.id.tv_news://右侧消息
+                startActivity(NewsActivity.class);
+                break;
+            case R.id.iv_news://右侧消息
                 startActivity(NewsActivity.class);
                 break;
             default:
@@ -160,6 +181,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * 接收选择的城市
+     *
      * @param requestCode
      * @param resultCode
      * @param data
