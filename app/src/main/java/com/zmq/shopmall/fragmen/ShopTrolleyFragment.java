@@ -4,6 +4,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -48,12 +50,18 @@ public class ShopTrolleyFragment extends BaseFragment {
     NestedScrollView nsvShopTrolley; //整体滑动控件
     @BindView(R.id.srl_shop_trolley)
     SuperSwipeRefreshLayout srlShopTrolley; //下拉刷新
-    private View v1; //下拉刷新头布局
+    @BindView(R.id.fab_up)
+    FloatingActionButton fabUp;
+    private View vHead; //下拉刷新头布局
     private ImageView ivHead; //下拉刷新图片
     private TextView tvHead; //下拉刷新文字
+    private View vFoot;//上拉加载布局
+    private TextView tvLoadMore; //加载更多
+    private ProgressBar pbFoot;
 
     private List<RecommendBean> data = new ArrayList<>();
     private HomeFootAdapter ofYouAdapter;
+    private AnimationDrawable anima;
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -86,16 +94,20 @@ public class ShopTrolleyFragment extends BaseFragment {
      * 设置下拉刷新 上拉加载
      */
     private void setRefresh() {
-        v1 = View.inflate(activity, R.layout.item_superswiper_head, null);
-        ivHead = (ImageView) v1.findViewById(R.id.iv_head);
-        tvHead = (TextView) v1.findViewById(R.id.tv_head);
-        srlShopTrolley.setHeaderView(v1);
+        vHead = View.inflate(activity, R.layout.item_superswiper_head, null);
+        ivHead = (ImageView) vHead.findViewById(R.id.iv_head);
+        tvHead = (TextView) vHead.findViewById(R.id.tv_head);
+        vFoot = View.inflate(activity, R.layout.item_superswiper_foot, null);
+        tvLoadMore = (TextView) vFoot.findViewById(R.id.tv_load_more);
+        pbFoot = (ProgressBar) vFoot.findViewById(R.id.pb_foot);
+        srlShopTrolley.setHeaderView(vHead);
+        srlShopTrolley.setFooterView(vFoot);
         srlShopTrolley.setTargetScrollWithLayout(true);
         srlShopTrolley.setOnPullRefreshListener(new SuperSwipeRefreshLayout.OnPullRefreshListener() {
             @Override
             public void onRefresh() {//TODO 开始刷新
                 tvHead.setText("更新中...");
-                final AnimationDrawable anima = (AnimationDrawable) ivHead.getDrawable();
+                anima = (AnimationDrawable) ivHead.getDrawable();
                 anima.start();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -122,7 +134,16 @@ public class ShopTrolleyFragment extends BaseFragment {
         srlShopTrolley.setOnPushLoadMoreListener(new SuperSwipeRefreshLayout.OnPushLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                srlShopTrolley.setLoadMore(false);
+                tvLoadMore.setText("加载中...");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (srlShopTrolley != null) {
+                            srlShopTrolley.setLoadMore(false);
+                        }
+                    }
+                }, 2000);
+
             }
 
             @Override
@@ -132,12 +153,12 @@ public class ShopTrolleyFragment extends BaseFragment {
 
             @Override
             public void onPushEnable(boolean b) {//TODO 上拉过程中，上拉的距离是否足够出发刷新
-
+                tvLoadMore.setText(b ? "松开加载..." : "下拉加载...");
             }
         });
     }
 
-    @OnClick({R.id.tv_good_goods, R.id.tv_look_follow})
+    @OnClick({R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up})
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_good_goods:
@@ -145,6 +166,9 @@ public class ShopTrolleyFragment extends BaseFragment {
                 break;
             case R.id.tv_look_follow:
                 showShortToast("看看关注");
+                break;
+            case R.id.fab_up:
+                nsvShopTrolley.smoothScrollTo(0, 0);
                 break;
             default:
                 break;

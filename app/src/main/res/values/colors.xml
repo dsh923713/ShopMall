@@ -108,6 +108,7 @@
     <color name="phone_bg">#f6f6f6</color>
     <color name="translucent">#66000000</color>
     <color name="translucent1">#a6000000</color>
+    <color name="translucent_half">#06000000</color>
     <color name="mb_gray">#ffdedede</color>
     <color name="mb_blue">#ff0099cc</color>
     <color name="mb_blue_dark">#ff00719b</color>

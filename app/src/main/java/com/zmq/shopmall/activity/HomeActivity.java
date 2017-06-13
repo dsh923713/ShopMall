@@ -5,7 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jpeng.jptabbar.JPTabBar;
@@ -15,6 +15,7 @@ import com.zmq.shopmall.R;
 import com.zmq.shopmall.base.BaseActivity;
 import com.zmq.shopmall.fragmen.ClassifyFragment;
 import com.zmq.shopmall.fragmen.HomeFragment;
+import com.zmq.shopmall.fragmen.MyselfFragment;
 import com.zmq.shopmall.fragmen.ShopTrolleyFragment;
 
 import butterknife.BindView;
@@ -25,7 +26,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.iv_news)
     ImageView ivNews;
     @BindView(R.id.index_title_bar)
-    LinearLayout indexTitleBar;
+    RelativeLayout indexTitleBar;
     private JPTabBar mTabbar; //底部Tab
     @BindView(R.id.tv_city)
     TextView tvCity;//定位城市
@@ -41,6 +42,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int resId = R.id.content;
     private static final int REQUEST_CODE_PICK_CITY = 1;
+    private MyselfFragment myselfFragment;
 
     public HomeActivity() {
         super(R.layout.activity_home);
@@ -56,6 +58,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         homeFragment = new HomeFragment();
         classifyFragment = new ClassifyFragment();
         shopTrolleyFragment = new ShopTrolleyFragment();
+        myselfFragment = new MyselfFragment();
         setBottomTab();
     }
 
@@ -80,35 +83,36 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         setLeftIcon(true);
                         setTitle("");
                         setRightIcon(true);
-                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.blue));
+                        indexTitleBar.setVisibility(View.VISIBLE);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.blue));
                         break;
                     case 1:  //分类
                         replaceFragment(resId, classifyFragment);
                         setLeftIcon(true);
                         setTitle("");
                         setRightIcon(true);
-                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.blue));
+                        indexTitleBar.setVisibility(View.VISIBLE);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.blue));
                         break;
                     case 2:  //特惠
                         replaceFragment(resId, new HomeFragment());
                         setLeftIcon(true);
                         setTitle("");
                         setRightIcon(true);
-                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.colorAccent));
+                        indexTitleBar.setVisibility(View.VISIBLE);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.colorAccent));
                         break;
                     case 3:  //购物车
                         replaceFragment(resId, shopTrolleyFragment);
                         setLeftIcon(false);
                         setTitle("购物车");
                         setRightIcon(false);
-                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.white));
+                        indexTitleBar.setVisibility(View.VISIBLE);
+                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.white));
                         break;
                     case 4:  //我的
-                        replaceFragment(resId, new HomeFragment());
-                        setLeftIcon(true);
-                        setTitle("");
-                        setRightIcon(true);
-                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this,R.color.translucent));
+                        replaceFragment(resId, myselfFragment);
+                        indexTitleBar.setVisibility(View.GONE);
                         break;
                     default:
                         break;

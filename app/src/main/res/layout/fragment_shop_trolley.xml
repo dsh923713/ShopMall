@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,144 +10,162 @@
         android:layout_height="0.5dp"
         android:background="@color/line_color" />
 
-    <com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
-        android:id="@+id/srl_shop_trolley"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/nsv_shop_trolley"
+        <com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout
+            android:id="@+id/srl_shop_trolley"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsv_shop_trolley"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tv_login"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/shape_login_white"
-                        android:paddingBottom="3dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:paddingTop="3dp"
-                        android:text="@string/login"
-                        android:textColor="@color/t313131"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="1"
-                        android:text="@string/login_synchronization"
-                        android:textColor="@color/t313131"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_shop_isempty"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
-                        android:drawableLeft="@mipmap/ic_shopping_trolley"
-                        android:drawablePadding="10dp"
-                        android:gravity="center"
-                        android:text="@string/shopping_trolley_isempty"
-                        android:textColor="@color/gary"
-                        android:textSize="13sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_shop_trolley"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tv_good_goods"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_login_white"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/qianggou"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tv_look_follow"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_follow_red"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
-                        android:paddingTop="5dp"
-                        android:text="@string/look_follow"
-                        android:textColor="@color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/grey"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/shape_login_white"
+                            android:paddingBottom="3dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="3dp"
+                            android:text="@string/login"
+                            android:textColor="@color/t313131"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_weight="1"
+                            android:text="@string/login_synchronization"
+                            android:textColor="@color/t313131"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:padding="5dp"
-                        android:text="@string/of_you_recommend"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="15sp" />
+                        android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_shop_of_you"
+                        <TextView
+                            android:id="@+id/tv_shop_isempty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginTop="20dp"
+                            android:drawableLeft="@mipmap/ic_shopping_trolley"
+                            android:drawablePadding="10dp"
+                            android:gravity="center"
+                            android:text="@string/shopping_trolley_isempty"
+                            android:textColor="@color/gary"
+                            android:textSize="13sp" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_shop_trolley"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_good_goods"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_login_white"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:text="@string/rush"
+                            android:textColor="@color/black"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tv_look_follow"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/shape_follow_red"
+                            android:gravity="center"
+                            android:paddingBottom="5dp"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="15dp"
+                            android:paddingTop="5dp"
+                            android:text="@string/look_follow"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:nestedScrollingEnabled="false" />
+                        android:background="@color/grey"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="@string/of_you_recommend"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="15sp" />
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_shop_of_you"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
-    </com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
+            </android.support.v4.widget.NestedScrollView>
+        </com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="30dp"
+            android:src="@mipmap/ic_go_top"
+            app:backgroundTint="#ffffff"
+            app:borderWidth="0dp"
+            app:fabSize="mini"
+            app:rippleColor="#ffffff" />
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>
