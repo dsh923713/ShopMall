@@ -1,6 +1,5 @@
 package com.zmq.shopmall.activity;
 
-import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -13,6 +12,7 @@ import com.yinglan.keyboard.HideUtil;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.adapter.HotSearchAdapter;
 import com.zmq.shopmall.base.BaseActivity;
+import com.zmq.shopmall.utils.SpacesItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,27 +73,7 @@ public class SearchActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 自定义item间隔
-     */
-    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int space;
-
-        public SpacesItemDecoration(int space) {
-            this.space = space;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            outRect.left = space;
-            outRect.right = space;
-            outRect.bottom = space;
-            if (parent.getChildAdapterPosition(view) == 0) {
-                outRect.top = space;
-            }
-        }
-    }
 
     /**
      * 模拟热搜数据

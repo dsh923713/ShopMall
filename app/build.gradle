@@ -53,4 +53,13 @@ dependencies {
     compile 'com.yinglan.keyboard:hidekeyboard:1.1.0'
     //swiperefreshlayout上拉加载 下拉刷新
     compile 'com.github.nuptboyzhb.lib.uikit:superswiperefreshlayout:1.0.0'
+    //tablayout的封装
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    //自定义正方形四角圆弧imageview
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    //底部弹窗
+    compile 'me.shaohui:bottomdialog:1.1.9'
+    //增减按钮
+    compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
 }

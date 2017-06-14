@@ -62,7 +62,7 @@ public class ClassifyFragment extends BaseFragment {
 //                rvRightData.clear();
 //                ClassifyLeftBean leftBean = rvLeftData.get(position);
 //                rvRightData.addAll(leftBean.getRightBeanList());
-                rvClassifyLeft.scrollToPosition(position);
+                showShortToast(rvLeftData.get(position).getTitle());
                 leftAdapter.selectPosition(position);
                 leftAdapter.notifyDataSetChanged();
 //                rightAdapter.notifyDataSetChanged();
@@ -71,7 +71,7 @@ public class ClassifyFragment extends BaseFragment {
         rightAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() { //右侧子布局点击事件
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                showShortToast(""+position);
+                showShortToast("" + position);
             }
         });
     }
@@ -81,42 +81,42 @@ public class ClassifyFragment extends BaseFragment {
      */
     private void setRvLeftData() {
         rvLeftData = new ArrayList<>();
-        rvLeftData.add(new ClassifyLeftBean("推荐分类",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("自家超市",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("全球购",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("男装",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("女装",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("男鞋",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("女鞋",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("内衣配饰",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("箱包手袋",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("美妆护理",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("钟表珠宝",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("手机数码",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("钟表珠宝",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("电脑办公",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("家用电器",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("食品生鲜",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("酒水饮料",rvRightData));
-        rvLeftData.add(new ClassifyLeftBean("母婴童装",rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("推荐分类", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("自家超市", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("全球购", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("男装", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("女装", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("男鞋", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("女鞋", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("内衣配饰", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("箱包手袋", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("美妆护理", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("钟表珠宝", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("手机数码", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("钟表珠宝", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("电脑办公", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("家用电器", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("食品生鲜", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("酒水饮料", rvRightData));
+        rvLeftData.add(new ClassifyLeftBean("母婴童装", rvRightData));
     }
 
-    private void setRvRightData(){
+    private void setRvRightData() {
         rvRightData = new ArrayList<>();
-        rvRightData.add(new ClassifyRightBean(R.mipmap.im1,true,false,"专场推荐",rvRightItemData));
-        rvRightData.add(new ClassifyRightBean(R.mipmap.im1,false,true,"热门分类",rvRightItemData));
-        rvRightData.add(new ClassifyRightBean(R.mipmap.im1,false,false,"休闲零食",rvRightItemData));
-        rvRightData.add(new ClassifyRightBean(R.mipmap.im1,false,false,"京东生鲜",rvRightItemData));
-        rvRightData.add(new ClassifyRightBean(R.mipmap.im1,false,false,"母婴用品",rvRightItemData));
+        rvRightData.add(new ClassifyRightBean(R.mipmap.im1, true, false, "专场推荐", rvRightItemData));
+        rvRightData.add(new ClassifyRightBean(R.mipmap.im1, false, true, "热门分类", rvRightItemData));
+        rvRightData.add(new ClassifyRightBean(R.mipmap.im1, false, false, "休闲零食", rvRightItemData));
+        rvRightData.add(new ClassifyRightBean(R.mipmap.im1, false, false, "京东生鲜", rvRightItemData));
+        rvRightData.add(new ClassifyRightBean(R.mipmap.im1, false, false, "母婴用品", rvRightItemData));
     }
 
-    private void setRvRightItemData(){
+    private void setRvRightItemData() {
         rvRightItemData = new ArrayList<>();
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"冰箱"));
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"冰箱"));
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"生鲜海鲜，零食饮料"));
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"冰箱"));
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"冰箱"));
-        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher,"冰箱"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "冰箱"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "冰箱"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "生鲜海鲜，零食饮料"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "冰箱"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "冰箱"));
+        rvRightItemData.add(new ClassifyRightItemBean(R.mipmap.ic_launcher, "冰箱"));
     }
 }

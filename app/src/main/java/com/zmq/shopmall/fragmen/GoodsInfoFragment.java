@@ -36,13 +36,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 商品
  * Created by Administrator on 2017/6/7.
  */
 
-public class GoodsInfoFragment extends BaseFragment implements View.OnClickListener, SlideDetailsLayout.OnSlideDetailsListener {
+public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener {
     @BindView(R.id.iv_banner)
     Banner ivBanner; //轮播图
     @BindView(R.id.tv_goods_title)
@@ -150,10 +151,6 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
      */
     private void SetListener() {
         sv_switch.setOnSlideDetailsListener(this);
-        tvOfYouRecommend.setOnClickListener(this);
-        tvRank.setOnClickListener(this);
-        fabUpSlide.setOnClickListener(this);
-        tvExamineImage.setOnClickListener(this);
     }
 
     /**
@@ -178,7 +175,8 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
         if (nowFragment != toFragment) {
             fragmentTransaction = fragmentManager.beginTransaction();
             if (!toFragment.isAdded()) {    // 先判断是否被add过
-                fragmentTransaction.hide(fromFragment).add(R.id.fl_content, toFragment).commitAllowingStateLoss(); // 隐藏当前的fragment，add下一个到activity中
+                fragmentTransaction.hide(fromFragment).add(R.id.fl_content, toFragment).commitAllowingStateLoss(); //
+                // 隐藏当前的fragment，add下一个到activity中
             } else {
                 fragmentTransaction.hide(fromFragment).show(toFragment).commitAllowingStateLoss(); // 隐藏当前的fragment，显示下一个
             }
@@ -269,8 +267,8 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
         mActivity = (GoodsDetailsActivity) context;
     }
 
-    @Override
-    public void onClick(View v) {
+    @OnClick({R.id.tv_of_you_recommend, R.id.tv_rank, R.id.fab_up_slide, R.id.tv_examine_image})
+    void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_of_you_recommend:
                 break;
@@ -300,19 +298,20 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
             mActivity.vpContent.setNoScroll(true);
             mActivity.tvTitle.setVisibility(View.VISIBLE);
             mActivity.pstsTabs.setVisibility(View.GONE);
-            setTextContent(R.mipmap.ic_down_up,"下拉收起图文详情");
+            setTextContent(R.mipmap.ic_down_up, "下拉收起图文详情");
         } else {
             //当前为商品详情页
             fabUpSlide.hide();
             mActivity.vpContent.setNoScroll(false);
             mActivity.tvTitle.setVisibility(View.GONE);
             mActivity.pstsTabs.setVisibility(View.VISIBLE);
-            setTextContent(R.mipmap.ic_goto_up,"上拉查看图文详情");
+            setTextContent(R.mipmap.ic_goto_up, "上拉查看图文详情");
         }
     }
 
     /**
      * 设置上拉下拉文字变化
+     *
      * @param resId
      * @param content
      */
@@ -322,4 +321,5 @@ public class GoodsInfoFragment extends BaseFragment implements View.OnClickListe
         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
         tvExamineImage.setCompoundDrawables(drawable, null, null, null);
     }
+
 }

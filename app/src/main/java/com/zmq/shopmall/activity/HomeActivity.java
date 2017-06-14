@@ -17,6 +17,7 @@ import com.zmq.shopmall.fragmen.ClassifyFragment;
 import com.zmq.shopmall.fragmen.HomeFragment;
 import com.zmq.shopmall.fragmen.MyselfFragment;
 import com.zmq.shopmall.fragmen.ShopTrolleyFragment;
+import com.zmq.shopmall.fragmen.SpecialOfferFragment;
 
 import butterknife.BindView;
 
@@ -95,7 +96,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.blue));
                         break;
                     case 2:  //特惠
-                        replaceFragment(resId, new HomeFragment());
+                        replaceFragment(resId, new SpecialOfferFragment());
                         setLeftIcon(true);
                         setTitle("");
                         setRightIcon(true);
