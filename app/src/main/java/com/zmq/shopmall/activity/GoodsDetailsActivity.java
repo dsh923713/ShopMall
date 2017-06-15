@@ -34,7 +34,7 @@ import ren.qinc.numberbutton.NumberButton;
  * Created by Administrator on 2017/6/7.
  */
 
-public class GoodsDetailsActivity extends BaseActivity implements View.OnClickListener {
+public class GoodsDetailsActivity extends BaseActivity implements View.OnClickListener, GoodsSkuAdapter.GetSkuListener {
     @BindView(R.id.ll_back)
     LinearLayout llBack; //返回
     @BindView(R.id.psts_tabs)
@@ -66,6 +66,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     private List<Fragment> fragmentList = new ArrayList<>();//fragment数组
     private List<GoodsSkuBean> goodsSkuBeanList;
     private List<GoodsSkuBean.GoodsSkuChild> goodsSkuChildList;
+
 
     public GoodsDetailsActivity() {
         super(R.layout.activity_goods_details);
@@ -158,6 +159,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                 rvGoodsSku.setLayoutManager(new LinearLayoutManager(GoodsDetailsActivity.this));
                 GoodsSkuAdapter goodsSkuAdapter = new GoodsSkuAdapter(goodsSkuBeanList);
                 rvGoodsSku.setAdapter(goodsSkuAdapter);
+                goodsSkuAdapter.GetSku(GoodsDetailsActivity.this);
 
             }
         }).setCancelOutside(false).show();
@@ -176,7 +178,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
                     }
                     break;
                 case R.id.tv_buy:
-                    showShortToast(numberButton.getNumber() + "");
+                    showShortToast(numberButton.getNumber() + "--");
                     break;
                 case R.id.tv_into_shopping_trolley:
                     break;
@@ -223,7 +225,7 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         contentView.findViewById(R.id.tv_browsing_history).setOnClickListener(listener);
     }
 
-    private void setBottomData(){
+    private void setBottomData() {
         goodsSkuBeanList = new ArrayList<>();
         goodsSkuChildList = new ArrayList<>();
         goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("黑色"));
@@ -232,7 +234,12 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("紫黑色"));
         goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("红色"));
         goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("粉色"));
-        goodsSkuBeanList.add(new GoodsSkuBean("颜色",goodsSkuChildList));
-        goodsSkuBeanList.add(new GoodsSkuBean("尺码",goodsSkuChildList));
+        goodsSkuBeanList.add(new GoodsSkuBean("颜色", goodsSkuChildList));
+        goodsSkuBeanList.add(new GoodsSkuBean("尺码", goodsSkuChildList));
+    }
+
+    @Override
+    public void getSku(String skuName, String sku) {
+        showShortToast(skuName + "--" + sku);
     }
 }

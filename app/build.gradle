@@ -62,4 +62,10 @@ dependencies {
     compile 'me.shaohui:bottomdialog:1.1.9'
     //增减按钮
     compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
+    //评级控件
+    compile 'com.iarcuschin:simpleratingbar:0.1.5'
+    //九宫格图片控件
+    compile 'com.jaeger.ninegridimageview:library:1.0.2'
+    //仿京东地址三级联动
+    compile 'com.github.chihane:JDAddressSelector:1.1.4'
 }

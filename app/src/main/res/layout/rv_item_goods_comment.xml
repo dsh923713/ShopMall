@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/riv_goods_comment_user"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/im1"
+            app:riv_oval="true"
+            app:riv_tile_mode="repeat"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/riv_goods_comment_user"
+            android:gravity="center_vertical"
+            android:text="GDSS"
+            android:textColor="@color/black"
+            android:textSize="12sp"/>
+
+        <com.iarcuschin.simpleratingbar.SimpleRatingBar
+            android:id="@+id/srb_goods_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srb_borderColor="@color/red"
+            app:srb_fillColor="@color/red"
+            app:srb_numberOfStars="5"
+            app:srb_rating="5"
+            app:srb_starSize="12dp"
+            app:srb_stepSize="0.5"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_goods_comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="科雷嘉的历史记录看见阿弗莱克大家福利卡大家是否离开的数据了撒娇的法律大四积分垃圾"
+        android:textColor="@color/black"
+        android:textSize="14sp"/>
+
+    <com.jaeger.ninegridimageview.NineGridImageView
+        android:id="@+id/ngiv_goods"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        app:imgGap="4dp"
+        app:showStyle="grid"
+        app:singleImgSize="120dp"/>
+</LinearLayout>

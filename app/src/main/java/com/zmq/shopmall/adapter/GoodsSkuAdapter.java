@@ -10,7 +10,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.bean.GoodsSkuBean;
-import com.zmq.shopmall.utils.ToastUtils;
 
 import java.util.List;
 
@@ -20,27 +19,31 @@ import java.util.List;
 
 public class GoodsSkuAdapter extends BaseQuickAdapter<GoodsSkuBean, BaseViewHolder> {
 
+    private GetSkuListener getSkuListener;
+
     public GoodsSkuAdapter(@Nullable List<GoodsSkuBean> data) {
         super(R.layout.item_dia_goods_sku, data);
+    }
+
+    public void GetSku(GetSkuListener getSkuListener) {
+        this.getSkuListener = getSkuListener;
     }
 
     @Override
     protected void convert(BaseViewHolder holder, final GoodsSkuBean item) {
         holder.setText(R.id.tv_goods_sku, item.getSku());
         final RecyclerView rvGoodsSku = holder.getView(R.id.rv_goods_sku);
-        rvGoodsSku.setLayoutManager(new GridLayoutManager(mContext, 6));
+        rvGoodsSku.setLayoutManager(new GridLayoutManager(mContext, 4));
         final GoodsSkuChildAdapter childAdapter = new GoodsSkuChildAdapter(item.getGoodsSku());
         rvGoodsSku.setAdapter(childAdapter);
         childAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                ToastUtils.showShortToast(mContext, item.getGoodsSku().get(position).getSkuName());
-//                TextView tv = (TextView) childAdapter.getViewByPosition(rvGoodsSku, position, R.id.tv_goods_sku);
-//                tv.setTextColor(ContextCompat.getColor(mContext, R.color.red));
-//                tv.setBackground(ContextCompat.getDrawable(mContext, R.drawable.shape_goods_sku_red));
+                if (getSkuListener != null) { //获取sku
+                    getSkuListener.getSku(item.getSku(), item.getGoodsSku().get(position).getSkuName());
+                }
                 childAdapter.selectPosition(position);
                 childAdapter.notifyDataSetChanged();
-
             }
         });
 
@@ -59,17 +62,29 @@ public class GoodsSkuAdapter extends BaseQuickAdapter<GoodsSkuBean, BaseViewHold
         protected void convert(BaseViewHolder holder, GoodsSkuBean.GoodsSkuChild item) {
             holder.setText(R.id.tv_goods_sku, item.getSkuName());
             holder.addOnClickListener(R.id.tv_goods_sku);
-            if (position == holder.getAdapterPosition()) {
-                holder.setTextColor(R.id.tv_goods_sku, ContextCompat.getColor(mContext, R.color.red));
-                holder.setBackgroundRes(R.id.tv_goods_sku, R.drawable.shape_goods_sku_red);
-            }else {
-                holder.setTextColor(R.id.tv_goods_sku, ContextCompat.getColor(mContext, R.color.black));
-                holder.setBackgroundRes(R.id.tv_goods_sku, R.drawable.shape_login_white);
-            }
+            /**
+             * 判断是否是选中状态
+             */
+            holder.setTextColor(R.id.tv_goods_sku, position == holder.getAdapterPosition() ? ContextCompat.getColor(mContext, R
+                    .color.red) : ContextCompat.getColor(mContext, R.color.black));
+            holder.setBackgroundRes(R.id.tv_goods_sku, position == holder.getAdapterPosition() ? R.drawable.shape_goods_sku_red
+                    : R.drawable.shape_login_white);
+            holder.getView(R.id.tv_goods_sku).setClickable(position == holder.getAdapterPosition() ? false : true);
         }
 
+        /**
+         * 传递点击时的position
+         * @param position
+         */
         public void selectPosition(int position) {
             this.position = position;
         }
+    }
+
+    /**
+     * 声明接口获取sku
+     */
+    public interface GetSkuListener {
+        void getSku(String skuName, String sku);
     }
 }

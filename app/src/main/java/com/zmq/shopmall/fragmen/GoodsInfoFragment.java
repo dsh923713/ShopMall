@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +29,10 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.activity.GoodsDetailsActivity;
+import com.zmq.shopmall.adapter.GoodsCommentAdapter;
+import com.zmq.shopmall.adapter.HomeFootAdapter;
 import com.zmq.shopmall.base.BaseFragment;
+import com.zmq.shopmall.bean.GoodsCommentBean;
 import com.zmq.shopmall.bean.RecommendBean;
 import com.zmq.shopmall.utils.GlideImageLoader;
 import com.zmq.shopmall.widget.SlideDetailsLayout;
@@ -37,13 +42,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import chihane.jdaddressselector.BottomDialog;
+import chihane.jdaddressselector.OnAddressSelectedListener;
+import chihane.jdaddressselector.model.City;
+import chihane.jdaddressselector.model.County;
+import chihane.jdaddressselector.model.Province;
+import chihane.jdaddressselector.model.Street;
 
 /**
  * 商品
  * Created by Administrator on 2017/6/7.
  */
 
-public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener {
+public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener,
+        OnAddressSelectedListener {
     @BindView(R.id.iv_banner)
     Banner ivBanner; //轮播图
     @BindView(R.id.tv_goods_title)
@@ -120,16 +132,24 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
     FrameLayout flContent; //图文具体内容
     @BindView(R.id.fab_up_slide)
     FloatingActionButton fabUpSlide; //回到顶部
+    @BindView(R.id.tv_no_comment)
+    TextView tvNoComment; //暂无评价
+
     private GoodsDetailsActivity mActivity; //该活动对象
-
-
     private Fragment nowFragment; //图文当前显示对象
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager; //fragment管理器
     private GoodsDetailWebFragment goodsDetailWebFragment; //图文介绍
     private List<Integer> imageId;//图标集合
-    private List<RecommendBean> recommendBeanList = new ArrayList<>();
-    private List<RecommendBean> rankList = new ArrayList<>();
+    private List<RecommendBean> recommendBeanList; //推荐列表数据
+    private List<RecommendBean> rankList; //排行榜数据
+    private List<RecommendBean> list = new ArrayList<>();
+    private boolean isRecommend = true;
+    private boolean isRank;
+    private List<GoodsCommentBean> goodsCommentBeanList; //评论数据
+    private List<GoodsCommentBean.GoodsCommentImage> imageList; //评论中的图片集合
+    private BottomDialog dialog;//地址选择弹窗
+    private HomeFootAdapter recommendAdapter;//推荐列表适配器
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -144,6 +164,16 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         setGoodsDetail();
         setRgListener();
         fabUpSlide.hide();
+        setGoodsCommentList();
+        rvComment.setLayoutManager(new LinearLayoutManager(activity));
+        rvComment.setAdapter(new GoodsCommentAdapter(goodsCommentBeanList));
+
+        setRecommendData();
+        setRankData();
+        list.addAll(recommendBeanList);
+        rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 3));
+        recommendAdapter = new HomeFootAdapter(list);
+        rvShopOfYou.setAdapter(recommendAdapter);
     }
 
     /**
@@ -267,12 +297,34 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         mActivity = (GoodsDetailsActivity) context;
     }
 
-    @OnClick({R.id.tv_of_you_recommend, R.id.tv_rank, R.id.fab_up_slide, R.id.tv_examine_image})
+    @OnClick({R.id.tv_of_you_recommend, R.id.tv_rank, R.id.fab_up_slide, R.id.tv_examine_image, R.id.tv_all_comment, R.id
+            .tv_delivery_address})
     void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_of_you_recommend:
+            case R.id.tv_of_you_recommend://推荐
+                isRank = false;
+                isRecommend = true;
+                tvOfYouRecommend.setClickable(false);
+                tvOfYouRecommend.setTextColor(ContextCompat.getColor(activity, R.color.red));
+                tvRank.setTextColor(ContextCompat.getColor(activity, R.color.black));
+                tvRank.setClickable(true);
+                list.clear();
+                list.addAll(recommendBeanList);
+                recommendAdapter.notifyDataSetChanged();
                 break;
-            case R.id.tv_rank:
+            case R.id.tv_rank://排行
+                isRecommend = false;
+                isRank = true;
+                tvOfYouRecommend.setTextColor(ContextCompat.getColor(activity, R.color.black));
+                tvRank.setTextColor(ContextCompat.getColor(activity, R.color.red));
+                tvRank.setClickable(false);
+                tvOfYouRecommend.setClickable(true);
+                list.clear();
+                list.addAll(rankList);
+                recommendAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_delivery_address://选择地址
+                setAddress();
                 break;
             case R.id.fab_up_slide:
                 //点击滑动到顶部
@@ -281,6 +333,9 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
                 break;
             case R.id.tv_examine_image: //上拉查看图文详情
                 mActivity.vpContent.setCurrentItem(1);
+                break;
+            case R.id.tv_all_comment: //查看全部评论
+                mActivity.vpContent.setCurrentItem(2);
                 break;
             default:
                 break;
@@ -322,4 +377,83 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         tvExamineImage.setCompoundDrawables(drawable, null, null, null);
     }
 
+
+    /**
+     * 评论列表模拟数据
+     */
+
+    private void setGoodsCommentList() {
+        setGoodsCommentImage();
+        goodsCommentBeanList = new ArrayList<>();
+        goodsCommentBeanList.add(new GoodsCommentBean(R.mipmap.im1, "GDS", 5, "大是大非的四渡赤水的范德萨发生分散东山岛", imageList));
+        goodsCommentBeanList.add(new GoodsCommentBean(R.mipmap.ic_launcher, "GDS", 5, "大是大非的四渡赤水的范德萨发生分散东山岛", imageList));
+        goodsCommentBeanList.add(new GoodsCommentBean(R.mipmap.ic_launcher, "GDS", 5, "大是大非的四渡赤水的范德萨发生分散东山岛", imageList));
+        goodsCommentBeanList.add(new GoodsCommentBean(R.mipmap.ic_launcher, "GDS", 4, "大是大非的四渡赤水的范德萨发生分散东山岛", imageList));
+
+    }
+
+    /**
+     * 评论列表图片模拟数据
+     */
+    private void setGoodsCommentImage() {
+        imageList = new ArrayList<>();
+        imageList.add(new GoodsCommentBean.GoodsCommentImage("http://pic.58pic.com/58pic/12/03/18/68w58PICjJP.jpg"));
+        imageList.add(new GoodsCommentBean.GoodsCommentImage("http://pic.58pic.com/58pic/12/03/18/68w58PICjJP.jpg"));
+        imageList.add(new GoodsCommentBean.GoodsCommentImage("http://pic.58pic.com/58pic/12/03/18/68w58PICjJP.jpg"));
+        imageList.add(new GoodsCommentBean.GoodsCommentImage("http://pic.58pic.com/58pic/12/03/18/68w58PICjJP.jpg"));
+    }
+
+    /**
+     * 设置收货地址
+     */
+    private void setAddress() {
+        dialog = new BottomDialog(activity);
+        dialog.setOnAddressSelectedListener(this);
+        dialog.show();
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        String address = (province == null ? "" : province.name) + " -> " + (city == null ? "" : city.name) + " -> " + (county
+                == null ? "" : county.name) + (street == null ? "" : " -> " + street.name);
+        tvDeliveryAddress.setText(address);
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    private void setRecommendData() {
+        recommendBeanList = new ArrayList<>();
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
+                false));
+    }
+
+    private void setRankData() {
+        rankList = new ArrayList<>();
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 102.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪V超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+    }
 }

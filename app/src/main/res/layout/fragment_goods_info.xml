@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/pc_content"
@@ -31,7 +31,7 @@
                         android:id="@+id/iv_banner"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:background="@mipmap/im2" />
+                        android:background="@mipmap/im2"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                             android:maxLines="2"
                             android:text="Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                                 android:text="￥"
                                 android:textColor="@color/red"
                                 android:textSize="14sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"/>
 
                             <TextView
                                 android:id="@+id/tv_new_price"
@@ -78,7 +78,7 @@
                                 android:text="599"
                                 android:textColor="@color/red"
                                 android:textSize="21sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"/>
 
                             <!--<TextView-->
                             <!--android:id="@+id/tv_old_price"-->
@@ -95,7 +95,7 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
                     <!-- 当前已选的商品 -->
                     <LinearLayout
                         android:id="@+id/ll_current_goods"
@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:text="已选"
                             android:textColor="@color/gary"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
 
                         <TextView
                             android:id="@+id/tv_current_goods"
@@ -123,14 +123,14 @@
                             android:drawableRight="@mipmap/ic_right"
                             android:text="黑色, 1件"
                             android:textColor="@color/black"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"/>
 
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -151,7 +151,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="送至"
                                 android:textColor="@color/gary"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv_delivery_address"
@@ -162,9 +162,9 @@
                                 android:drawableLeft="@mipmap/ic_address"
                                 android:drawableRight="@mipmap/ic_right"
                                 android:gravity="center|left"
-                                android:text="北京>朝阳区>北苑"
+                                android:text="北京 -> 朝阳区 -> 北苑"
                                 android:textColor="@color/black"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv2"
@@ -176,7 +176,7 @@
                                 android:layout_toRightOf="@+id/tv1"
                                 android:text="@string/spot_goods"
                                 android:textColor="@color/red"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv_spot_goods_content"
@@ -187,7 +187,7 @@
                                 android:layout_toRightOf="@+id/tv2"
                                 android:text=",11:10前下单,预计今天(06月08日)送达"
                                 android:textColor="@color/gary"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv_goods_quality"
@@ -197,7 +197,7 @@
                                 android:layout_marginTop="5dp"
                                 android:text="重量"
                                 android:textColor="@color/gary"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv_goods_quality_content"
@@ -209,7 +209,7 @@
                                 android:layout_toRightOf="@+id/tv_goods_quality"
                                 android:text="0.09kg"
                                 android:textColor="@color/black"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
                         </RelativeLayout>
 
                     </LinearLayout>
@@ -217,10 +217,9 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <LinearLayout
-                        android:id="@+id/ll_comment"
                         android:layout_width="match_parent"
                         android:layout_height="44dp"
                         android:background="@color/white"
@@ -240,7 +239,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="用户点评"
                                 android:textColor="@color/black"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"/>
 
                             <TextView
                                 android:id="@+id/tv_comment_count"
@@ -249,7 +248,7 @@
                                 android:layout_marginLeft="10dp"
                                 android:text="(0)"
                                 android:textColor="@color/black"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -263,7 +262,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="好评度"
                                 android:textColor="@color/black"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"/>
 
                             <TextView
                                 android:id="@+id/tv_good_comment"
@@ -274,33 +273,36 @@
                                 android:drawableRight="@mipmap/ic_right"
                                 android:text="100%"
                                 android:textColor="@color/red"
-                                android:textSize="13dp" />
+                                android:textSize="13dp"/>
                         </LinearLayout>
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/line_color" />
+                        android:background="@color/line_color"/>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_comment"
                         android:layout_width="match_parent"
+                        android:background="@color/white"
                         android:layout_height="wrap_content"
-                        android:visibility="gone" />
+                        android:visibility="visible"/>
 
                     <TextView
+                        android:id="@+id/tv_no_comment"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:gravity="center"
+                        android:visibility="gone"
                         android:text="@string/no_comment"
                         android:textColor="@color/t3f3f40"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/line_color" />
+                        android:background="@color/line_color"/>
 
                     <TextView
                         android:id="@+id/tv_all_comment"
@@ -312,12 +314,12 @@
                         android:padding="10dp"
                         android:text="@string/all_comment"
                         android:textColor="@color/t313131"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <TextView
                         android:id="@+id/tv_inquire"
@@ -330,12 +332,12 @@
                         android:padding="10dp"
                         android:text="@string/someone_question"
                         android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -353,7 +355,7 @@
                                 android:layout_height="30dp"
                                 android:layout_centerVertical="true"
                                 android:scaleType="centerCrop"
-                                android:src="@mipmap/im1" />
+                                android:src="@mipmap/im1"/>
 
                             <TextView
                                 android:id="@+id/tv_shop_name"
@@ -363,7 +365,7 @@
                                 android:layout_toRightOf="@+id/iv_shop_icon"
                                 android:text="特步官方旗舰店"
                                 android:textColor="@color/black"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
 
                             <TextView
                                 android:id="@+id/tv_shop_introduce"
@@ -374,7 +376,7 @@
                                 android:layout_toRightOf="@+id/iv_shop_icon"
                                 android:text="特步清飞扬，跑出你的风采"
                                 android:textColor="@color/t646464"
-                                android:textSize="13sp" />
+                                android:textSize="13sp"/>
                         </RelativeLayout>
 
                         <LinearLayout
@@ -394,7 +396,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/goods"
                                     android:textColor="@color/t646464"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
 
                                 <TextView
                                     android:id="@+id/tv_goods_grade"
@@ -402,7 +404,7 @@
                                     android:layout_height="wrap_content"
                                     android:text=" 9.6 | 高"
                                     android:textColor="@color/red"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -416,7 +418,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/serve"
                                     android:textColor="@color/t646464"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
 
                                 <TextView
                                     android:id="@+id/tv_serve_grade"
@@ -424,7 +426,7 @@
                                     android:layout_height="wrap_content"
                                     android:text=" 9.6 | 高"
                                     android:textColor="@color/red"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -438,7 +440,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/logistics"
                                     android:textColor="@color/t646464"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
 
                                 <TextView
                                     android:id="@+id/tv_logistics_grade"
@@ -446,7 +448,7 @@
                                     android:layout_height="wrap_content"
                                     android:text=" 9.6 | 高"
                                     android:textColor="@color/red"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -468,20 +470,20 @@
                                     android:layout_height="wrap_content"
                                     android:text="1.6万"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/follow_num"
                                     android:textColor="@color/t646464"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"/>
                             </LinearLayout>
 
                             <View
                                 android:layout_width="0.2dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/line_color" />
+                                android:background="@color/line_color"/>
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -497,20 +499,20 @@
                                     android:layout_height="wrap_content"
                                     android:text="10"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/all_goods"
                                     android:textColor="@color/t646464"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"/>
                             </LinearLayout>
 
                             <View
                                 android:layout_width="0.2dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/line_color" />
+                                android:background="@color/line_color"/>
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -526,14 +528,14 @@
                                     android:layout_height="wrap_content"
                                     android:text="0"
                                     android:textColor="@color/black"
-                                    android:textSize="15sp" />
+                                    android:textSize="15sp"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/shop_status"
                                     android:textColor="@color/t646464"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"/>
                             </LinearLayout>
                         </LinearLayout>
 
@@ -559,7 +561,7 @@
                                     android:drawablePadding="5dp"
                                     android:text="@string/contact_server"
                                     android:textColor="@color/t313131"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -578,7 +580,7 @@
                                     android:drawablePadding="5dp"
                                     android:text="@string/into_shop"
                                     android:textColor="@color/t313131"
-                                    android:textSize="13sp" />
+                                    android:textSize="13sp"/>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -586,48 +588,50 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/tv_of_you_recommend"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:padding="15dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/of_you_recommend"
-                            android:textColor="@color/t313131"
-                            android:textSize="13sp" />
+                            android:textColor="@color/red"
+                            android:textSize="13sp"/>
 
                         <View
                             android:layout_width="0.2dp"
                             android:layout_height="match_parent"
-                            android:background="@color/line_color" />
+                            android:background="@color/line_color"/>
 
                         <TextView
                             android:id="@+id/tv_rank"
                             android:layout_width="0dp"
+                            android:padding="15dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="@string/rank"
                             android:textColor="@color/t313131"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
                     </LinearLayout>
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_shop_of_you"
+                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
-                        android:background="@color/line_color" />
+                        android:background="@color/line_color"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -636,12 +640,12 @@
                         android:padding="15dp"
                         android:text="@string/examine_more_recommend"
                         android:textColor="@color/t313131"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="10dp"
-                        android:background="@color/color_border" />
+                        android:background="@color/color_border"/>
 
                     <TextView
                         android:id="@+id/tv_examine_image"
@@ -654,11 +658,11 @@
                         android:padding="15dp"
                         android:text="@string/examine_image_text_details"
                         android:textColor="@color/t313131"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"/>
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
 
-            <include layout="@layout/goods_detail_item_tab" />
+            <include layout="@layout/goods_detail_item_tab"/>
         </com.zmq.shopmall.widget.SlideDetailsLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -672,6 +676,6 @@
             app:backgroundTint="#ffffff"
             app:borderWidth="0dp"
             app:fabSize="mini"
-            app:rippleColor="#ffffff" />
+            app:rippleColor="#ffffff"/>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

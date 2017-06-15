@@ -14,15 +14,21 @@ import java.util.List;
  */
 
 public class HomeFootAdapter extends BaseQuickAdapter<RecommendBean, BaseViewHolder> {
+    private boolean isRank;
+
     public HomeFootAdapter(@Nullable List<RecommendBean> data) {
         super(R.layout.rv_item_child_home_foot, data);
     }
 
+    public HomeFootAdapter(boolean isRank, @Nullable List<RecommendBean> data) {
+        super(R.layout.rv_item_child_home_foot, data);
+        this.isRank = isRank;
+    }
+
     @Override
     protected void convert(BaseViewHolder holder, RecommendBean item) {
-        holder.setImageResource(R.id.iv_icon, item.getImage())
-                .setText(R.id.tv_name, item.getTitle())
-                .setText(R.id.tv_price, item.getPrice() + "");
+        holder.setImageResource(R.id.iv_icon, item.getImage()).setText(R.id.tv_name, item.getTitle()).setText(R.id.tv_price,
+                item.getPrice() + "");
         if (item.isFindSimilar()) {
             holder.setVisible(R.id.tv_find_similar, true);
             holder.addOnClickListener(R.id.tv_find_similar);
@@ -31,6 +37,13 @@ public class HomeFootAdapter extends BaseQuickAdapter<RecommendBean, BaseViewHol
             holder.setVisible(R.id.tv_shopping_trolley, true);
             holder.addOnClickListener(R.id.tv_shopping_trolley);
         }
+        if (item.isRank() && holder.getAdapterPosition() < 3) {
+            holder.setVisible(R.id.tv_rank, true);
+            holder.setText(R.id.tv_rank, holder.getAdapterPosition() + 1 + "");
+        }else {
+            holder.setVisible(R.id.tv_rank, false);
+        }
+
 
     }
 }
