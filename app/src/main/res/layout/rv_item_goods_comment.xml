@@ -54,7 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="科雷嘉的历史记录看见阿弗莱克大家福利卡大家是否离开的数据了撒娇的法律大四积分垃圾"
         android:textColor="@color/black"
         android:textSize="14sp"/>
 

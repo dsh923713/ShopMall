@@ -23,7 +23,9 @@ import com.zmq.shopmall.widget.CustomPopWindow;
 import com.zmq.shopmall.widget.NoScrollViewPager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import me.shaohui.bottomdialog.BaseBottomDialog;
@@ -65,7 +67,12 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
 
     private List<Fragment> fragmentList = new ArrayList<>();//fragment数组
     private List<GoodsSkuBean> goodsSkuBeanList;
-    private List<GoodsSkuBean.GoodsSkuChild> goodsSkuChildList;
+    private List<GoodsSkuBean.GoodsSkuChild> goodsSkuChildList1;
+    private List<GoodsSkuBean.GoodsSkuChild> goodsSkuChildList2;
+    private Map<String, String> map = new HashMap<>();
+    ;
+    private List<String> value;
+    public String attribute;
 
 
     public GoodsDetailsActivity() {
@@ -118,7 +125,6 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_shopping_trolley://购物车
                 break;
             case R.id.tv_into_shopping_trolley://加入购物车
-                setBottomData();
                 setBottomPop();
                 break;
             default:
@@ -137,8 +143,8 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     /**
      * 设置底部购买弹窗
      */
-    private void setBottomPop() {
-
+    public void setBottomPop() {
+        setBottomData();
         dialog = BottomDialog.create(getSupportFragmentManager()).setLayoutRes(R.layout.dia_goods_sku).setViewListener(new BottomDialog.ViewListener() {
             @Override
             public void bindView(View v) {
@@ -171,22 +177,34 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            getAttribute();
             switch (v.getId()) {
                 case R.id.iv_clear:
                     if (dialog != null) {
                         dialog.dismiss();
+                        map.clear();
                     }
                     break;
                 case R.id.tv_buy:
-                    showShortToast(numberButton.getNumber() + "--");
+                    if (dialog != null) {
+                        dialog.dismiss();
+                        map.clear();
+                    }
                     break;
                 case R.id.tv_into_shopping_trolley:
+                    if (dialog != null) {
+                        dialog.dismiss();
+                        map.clear();
+                    }
                     break;
                 default:
                     break;
             }
+
         }
     };
+
+
 
     /**
      * 处理弹出显示内容、点击事件等逻辑
@@ -225,21 +243,55 @@ public class GoodsDetailsActivity extends BaseActivity implements View.OnClickLi
         contentView.findViewById(R.id.tv_browsing_history).setOnClickListener(listener);
     }
 
+    /**
+     * 模拟商品属性
+     */
     private void setBottomData() {
         goodsSkuBeanList = new ArrayList<>();
-        goodsSkuChildList = new ArrayList<>();
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("黑色"));
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("白色"));
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("棕色"));
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("紫黑色"));
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("红色"));
-        goodsSkuChildList.add(new GoodsSkuBean.GoodsSkuChild("粉色"));
-        goodsSkuBeanList.add(new GoodsSkuBean("颜色", goodsSkuChildList));
-        goodsSkuBeanList.add(new GoodsSkuBean("尺码", goodsSkuChildList));
+        goodsSkuChildList1 = new ArrayList<>();
+        goodsSkuChildList2 = new ArrayList<>();
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("黑色"));
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("白色"));
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("棕色"));
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("紫黑色"));
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("红色"));
+        goodsSkuChildList1.add(new GoodsSkuBean.GoodsSkuChild("粉色"));
+        goodsSkuChildList2.add(new GoodsSkuBean.GoodsSkuChild("L"));
+        goodsSkuChildList2.add(new GoodsSkuBean.GoodsSkuChild("XL"));
+        goodsSkuChildList2.add(new GoodsSkuBean.GoodsSkuChild("XXL"));
+        goodsSkuChildList2.add(new GoodsSkuBean.GoodsSkuChild("M"));
+        goodsSkuChildList2.add(new GoodsSkuBean.GoodsSkuChild("S"));
+        goodsSkuBeanList.add(new GoodsSkuBean("颜色", goodsSkuChildList1));
+        goodsSkuBeanList.add(new GoodsSkuBean("尺码", goodsSkuChildList2));
     }
 
     @Override
     public void getSku(String skuName, String sku) {
-        showShortToast(skuName + "--" + sku);
+        map.put(skuName, sku);
+//        getAttribute();
+    }
+    /**
+     * 获取选择的商品属性
+     */
+    private void getAttribute() {
+        value = new ArrayList<>();
+        for (String key : map.keySet()) {
+            value.add(map.get(key));
+        }
+        attribute = value.toString().replace("[", "").replace("]", "").toString() +","+ numberButton.getNumber() + "件";
+        if (attributelistener != null){
+            attributelistener.getGoodsAttribute(attribute);
+        }
+    }
+    /**
+     * 点击选择商品属性 实时传递到fragment中
+     */
+    private AttributeListener attributelistener;
+    public void GetAttributeListener(AttributeListener attributelistener){
+        this.attributelistener = attributelistener;
+    }
+
+    public interface AttributeListener{
+        void getGoodsAttribute(String attribute);
     }
 }

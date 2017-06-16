@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/td5d5d5"
+              android:orientation="vertical"
+              android:paddingTop="10dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <CheckBox
+            android:id="@+id/cb_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="淘宝城专卖"
+            android:textColor="@color/t313131"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tv_carriage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="已免运费"
+            android:textColor="@color/t313131"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <CheckBox
+            android:id="@+id/cb_goods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/riv_goods_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@mipmap/ic_timg"
+            app:riv_border_color="@color/gary"
+            app:riv_border_width="0.5dp"
+            app:riv_corner_radius="2dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:id="@+id/tv_goods_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="的撒范德萨范德萨范德萨就考虑的撒减肥了萨达的说法的是否是"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            <TextView
+                android:id="@+id/tv_goods_attribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="重量:1.32g 图案:蓝 规格:30*30*10"
+                android:textColor="@color/gary"
+                android:textSize="13sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom">
+
+                <TextView
+                    android:id="@+id/tv_goods_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_weight="0"
+                    android:text="￥120.00"
+                    android:textColor="@color/red"
+                    android:textSize="15sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+
+                <ren.qinc.numberbutton.NumberButton
+                    android:id="@+id/nb_goods_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="0"
+                    app:editable="true"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color"/>
+</LinearLayout>

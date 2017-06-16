@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/line_color" />
+        android:background="@color/line_color"/>
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                             android:paddingTop="3dp"
                             android:text="@string/login"
                             android:textColor="@color/t313131"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -59,7 +59,7 @@
                             android:layout_weight="1"
                             android:text="@string/login_synchronization"
                             android:textColor="@color/t313131"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -79,17 +79,19 @@
                             android:gravity="center"
                             android:text="@string/shopping_trolley_isempty"
                             android:textColor="@color/gary"
-                            android:textSize="13sp" />
+                            android:textSize="13sp"/>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_shop_trolley"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:id="@+id/tv_good_goods"
@@ -108,7 +110,7 @@
                             android:paddingTop="5dp"
                             android:text="@string/rush"
                             android:textColor="@color/black"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"/>
 
                         <TextView
                             android:id="@+id/tv_look_follow"
@@ -127,7 +129,7 @@
                             android:paddingTop="5dp"
                             android:text="@string/look_follow"
                             android:textColor="@color/white"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -143,13 +145,14 @@
                             android:padding="5dp"
                             android:text="@string/of_you_recommend"
                             android:textColor="@color/colorAccent"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"/>
 
                         <android.support.v7.widget.RecyclerView
                             android:id="@+id/rv_shop_of_you"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:nestedScrollingEnabled="false" />
+                            android:background="@color/white"
+                            android:nestedScrollingEnabled="false"/>
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
@@ -166,6 +169,6 @@
             app:backgroundTint="#ffffff"
             app:borderWidth="0dp"
             app:fabSize="mini"
-            app:rippleColor="#ffffff" />
+            app:rippleColor="#ffffff"/>
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

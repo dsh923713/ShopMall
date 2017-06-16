@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +20,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.activity.GoodsDetailsActivity;
+import com.zmq.shopmall.adapter.GoodShopTrolleyAdapter;
 import com.zmq.shopmall.adapter.HomeFootAdapter;
 import com.zmq.shopmall.base.BaseFragment;
+import com.zmq.shopmall.bean.GoodShopTrolleyBean;
 import com.zmq.shopmall.bean.RecommendBean;
 
 import java.util.ArrayList;
@@ -62,6 +65,8 @@ public class ShopTrolleyFragment extends BaseFragment {
     private List<RecommendBean> data = new ArrayList<>();
     private HomeFootAdapter ofYouAdapter;
     private AnimationDrawable anima;
+    private List<GoodShopTrolleyBean> shopTrolleyBeen = new ArrayList<>();
+    private GoodShopTrolleyAdapter shopTrolleyAdapter;
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,6 +81,9 @@ public class ShopTrolleyFragment extends BaseFragment {
         ofYouAdapter = new HomeFootAdapter(data);
         rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 2));
         rvShopOfYou.setAdapter(ofYouAdapter);
+        shopTrolleyAdapter = new GoodShopTrolleyAdapter(shopTrolleyBeen);
+        rvShopTrolley.setLayoutManager(new LinearLayoutManager(activity));
+        rvShopTrolley.setAdapter(shopTrolleyAdapter);
         ofYouAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -85,7 +93,34 @@ public class ShopTrolleyFragment extends BaseFragment {
         ofYouAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                showShortToast("加入购物车");
+                shopTrolleyBeen.add(new GoodShopTrolleyBean(true, "上讯电子商务" + position, R.mipmap.ic_timg, "撒的链接发就是浪费撒的", "数量:12 " +
+                        "规格：2142152 " + "" + "颜色:蓝色", 120.00));
+                shopTrolleyAdapter.notifyDataSetChanged();
+                if (shopTrolleyBeen.size() > 0) {
+                    tvShopIsempty.setVisibility(View.GONE);
+                }
+            }
+        });
+        shopTrolleyAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                shopTrolleyBeen.remove(position);
+                shopTrolleyAdapter.notifyDataSetChanged();
+                if (shopTrolleyBeen.size() == 0) {
+                    tvShopIsempty.setVisibility(View.VISIBLE);
+                }
+                return false;
+            }
+        });
+        shopTrolleyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                if (shopTrolleyBeen.get(position).isChecked()){
+                    shopTrolleyBeen.get(position).setChecked(false);
+                }else {
+                    shopTrolleyBeen.get(position).setChecked(true);
+                }
+                shopTrolleyAdapter.notifyDataSetChanged();
             }
         });
     }

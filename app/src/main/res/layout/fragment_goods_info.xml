@@ -284,6 +284,7 @@
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rv_comment"
+                        android:nestedScrollingEnabled="false"
                         android:layout_width="match_parent"
                         android:background="@color/white"
                         android:layout_height="wrap_content"
@@ -634,6 +635,7 @@
                         android:background="@color/line_color"/>
 
                     <TextView
+                        android:id="@+id/tv_more_recommend"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"

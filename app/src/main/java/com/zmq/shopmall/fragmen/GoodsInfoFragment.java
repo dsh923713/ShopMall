@@ -55,7 +55,7 @@ import chihane.jdaddressselector.model.Street;
  */
 
 public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayout.OnSlideDetailsListener,
-        OnAddressSelectedListener {
+        OnAddressSelectedListener,GoodsDetailsActivity.AttributeListener {
     @BindView(R.id.iv_banner)
     Banner ivBanner; //轮播图
     @BindView(R.id.tv_goods_title)
@@ -113,7 +113,9 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
     @BindView(R.id.tv_rank)
     TextView tvRank; //排行榜
     @BindView(R.id.rv_shop_of_you)
-    RecyclerView rvShopOfYou;  //查看更多推荐或完整排行榜
+    RecyclerView rvShopOfYou;  //推荐或排行榜列表
+    @BindView(R.id.tv_more_recommend)
+    TextView tvMoreRecommend;//查看更多推荐或完整排行榜
     @BindView(R.id.tv_examine_image)
     TextView tvExamineImage; //上拉查看图文详情
     @BindView(R.id.nsv_goods)
@@ -167,7 +169,7 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         setGoodsCommentList();
         rvComment.setLayoutManager(new LinearLayoutManager(activity));
         rvComment.setAdapter(new GoodsCommentAdapter(goodsCommentBeanList));
-
+        mActivity.GetAttributeListener(this);
         setRecommendData();
         setRankData();
         list.addAll(recommendBeanList);
@@ -298,9 +300,18 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
     }
 
     @OnClick({R.id.tv_of_you_recommend, R.id.tv_rank, R.id.fab_up_slide, R.id.tv_examine_image, R.id.tv_all_comment, R.id
-            .tv_delivery_address})
+            .tv_delivery_address, R.id.tv_more_recommend, R.id.tv_current_goods})
     void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_delivery_address://选择地址
+                setAddress();
+                break;
+            case R.id.tv_current_goods://选择商品属性
+                mActivity.setBottomPop();
+                break;
+            case R.id.tv_all_comment: //查看全部评论
+                mActivity.vpContent.setCurrentItem(2);
+                break;
             case R.id.tv_of_you_recommend://推荐
                 isRank = false;
                 isRecommend = true;
@@ -311,6 +322,7 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
                 list.clear();
                 list.addAll(recommendBeanList);
                 recommendAdapter.notifyDataSetChanged();
+                tvMoreRecommend.setText(getString(R.string.examine_more_recommend));
                 break;
             case R.id.tv_rank://排行
                 isRecommend = false;
@@ -322,9 +334,10 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
                 list.clear();
                 list.addAll(rankList);
                 recommendAdapter.notifyDataSetChanged();
+                tvMoreRecommend.setText(getString(R.string.examine_full_rank));
                 break;
-            case R.id.tv_delivery_address://选择地址
-                setAddress();
+            case R.id.tv_more_recommend://查看更多推荐或排行榜
+                showShortToast("执行");
                 break;
             case R.id.fab_up_slide:
                 //点击滑动到顶部
@@ -333,9 +346,6 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
                 break;
             case R.id.tv_examine_image: //上拉查看图文详情
                 mActivity.vpContent.setCurrentItem(1);
-                break;
-            case R.id.tv_all_comment: //查看全部评论
-                mActivity.vpContent.setCurrentItem(2);
                 break;
             default:
                 break;
@@ -438,22 +448,28 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
                 false));
         recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
                 false));
-        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
-                false));
+        recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false));
         recommendBeanList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false,
                 false));
     }
 
     private void setRankData() {
         rankList = new ArrayList<>();
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 102.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
-        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪V超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 102.00, false, false,
+                true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false,
+                true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 戏枪 电玩道具黑色", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
+        rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪V超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
+    }
+
+    @Override
+    public void getGoodsAttribute(String attribute) {
+        tvCurrentGoods.setText(mActivity.attribute);
     }
 }

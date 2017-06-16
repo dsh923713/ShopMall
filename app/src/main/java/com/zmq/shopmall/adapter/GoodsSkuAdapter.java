@@ -25,6 +25,7 @@ public class GoodsSkuAdapter extends BaseQuickAdapter<GoodsSkuBean, BaseViewHold
         super(R.layout.item_dia_goods_sku, data);
     }
 
+
     public void GetSku(GetSkuListener getSkuListener) {
         this.getSkuListener = getSkuListener;
     }
@@ -36,6 +37,9 @@ public class GoodsSkuAdapter extends BaseQuickAdapter<GoodsSkuBean, BaseViewHold
         rvGoodsSku.setLayoutManager(new GridLayoutManager(mContext, 4));
         final GoodsSkuChildAdapter childAdapter = new GoodsSkuChildAdapter(item.getGoodsSku());
         rvGoodsSku.setAdapter(childAdapter);
+        if (getSkuListener != null) { //获取sku
+            getSkuListener.getSku(item.getSku(), item.getGoodsSku().get(0).getSkuName());
+        }
         childAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
