@@ -94,7 +94,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="bottom">
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/tv_goods_price"
@@ -111,14 +111,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>
 
-                <ren.qinc.numberbutton.NumberButton
+                <com.zmq.shopmall.widget.NumberButton
                     android:id="@+id/nb_goods_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:layout_weight="0"
-                    app:editable="true"/>
+                    android:gravity="center"
+                    app:textSize="7sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

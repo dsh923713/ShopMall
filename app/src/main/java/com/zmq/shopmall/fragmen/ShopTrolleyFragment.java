@@ -12,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -36,7 +38,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/6/12.
  */
 
-public class ShopTrolleyFragment extends BaseFragment {
+public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolleyAdapter.GoodsAccountListener {
     @BindView(R.id.tv_login)
     TextView tvLogin; //登录按钮
     @BindView(R.id.tv_shop_isempty)
@@ -55,6 +57,17 @@ public class ShopTrolleyFragment extends BaseFragment {
     SuperSwipeRefreshLayout srlShopTrolley; //下拉刷新
     @BindView(R.id.fab_up)
     FloatingActionButton fabUp;
+    @BindView(R.id.cb_all)
+    CheckBox cbAll;
+    @BindView(R.id.tv_all_goods_price)
+    TextView tvAllGoodsPrice;
+    @BindView(R.id.tv_account_num)
+    TextView tvAccountNum;
+    @BindView(R.id.ll_account)
+    LinearLayout llAccount;
+    @BindView(R.id.ll_goto_account)
+    LinearLayout llGotoAccount;
+
     private View vHead; //下拉刷新头布局
     private ImageView ivHead; //下拉刷新图片
     private TextView tvHead; //下拉刷新文字
@@ -81,7 +94,7 @@ public class ShopTrolleyFragment extends BaseFragment {
         ofYouAdapter = new HomeFootAdapter(data);
         rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 2));
         rvShopOfYou.setAdapter(ofYouAdapter);
-        shopTrolleyAdapter = new GoodShopTrolleyAdapter(shopTrolleyBeen);
+        shopTrolleyAdapter = new GoodShopTrolleyAdapter(this,shopTrolleyBeen);
         rvShopTrolley.setLayoutManager(new LinearLayoutManager(activity));
         rvShopTrolley.setAdapter(shopTrolleyAdapter);
         ofYouAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -93,31 +106,45 @@ public class ShopTrolleyFragment extends BaseFragment {
         ofYouAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                shopTrolleyBeen.add(new GoodShopTrolleyBean(true, "上讯电子商务" + position, R.mipmap.ic_timg, "撒的链接发就是浪费撒的", "数量:12 " +
-                        "规格：2142152 " + "" + "颜色:蓝色", 120.00));
+                shopTrolleyBeen.add(new GoodShopTrolleyBean(true, "MOD天宇服饰城" + position, R.mipmap.ic_timg, "撒的链接发就是浪费撒的",
+                        "数量:12 " + "规格：2142152 " + "" + "颜色:蓝色", 120.00));
                 shopTrolleyAdapter.notifyDataSetChanged();
                 if (shopTrolleyBeen.size() > 0) {
                     tvShopIsempty.setVisibility(View.GONE);
+                    llAccount.setVisibility(View.VISIBLE);
+                    cbAll.setChecked(true);
                 }
             }
         });
+        //适配器长按事件
         shopTrolleyAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
                 shopTrolleyBeen.remove(position);
+                shopTrolleyAdapter.numberButton.setCurrentNumber(1);//移除时把数量置为1
                 shopTrolleyAdapter.notifyDataSetChanged();
                 if (shopTrolleyBeen.size() == 0) {
                     tvShopIsempty.setVisibility(View.VISIBLE);
+                    llAccount.setVisibility(View.GONE);
                 }
                 return false;
             }
         });
+
+       //适配器子布局点击事件
         shopTrolleyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                if (shopTrolleyBeen.get(position).isChecked()){
+                //所有商品全部选中 则全选按钮选中
+                for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                    if (been.isChecked()) {
+                        cbAll.setChecked(true);
+                    }
+                }
+                if (shopTrolleyBeen.get(position).isChecked()) {
                     shopTrolleyBeen.get(position).setChecked(false);
-                }else {
+                    cbAll.setChecked(false);
+                } else {
                     shopTrolleyBeen.get(position).setChecked(true);
                 }
                 shopTrolleyAdapter.notifyDataSetChanged();
@@ -193,7 +220,7 @@ public class ShopTrolleyFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up})
+    @OnClick({R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up, R.id.cb_all, R.id.ll_goto_account})
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_good_goods:
@@ -204,6 +231,21 @@ public class ShopTrolleyFragment extends BaseFragment {
                 break;
             case R.id.fab_up:
                 nsvShopTrolley.smoothScrollTo(0, 0);
+                break;
+            case R.id.cb_all: //全选
+                if (cbAll.isChecked()) {
+                    for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                        been.setChecked(true);
+                    }
+                } else {
+                    for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                        been.setChecked(false);
+                    }
+                }
+
+                shopTrolleyAdapter.notifyDataSetChanged();
+                break;
+            case R.id.ll_goto_account: //去结算
                 break;
             default:
                 break;
@@ -226,5 +268,11 @@ public class ShopTrolleyFragment extends BaseFragment {
         data.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, true));
         data.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, true));
         data.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪王 乐视TV超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, true));
+    }
+
+    @Override
+    public void getGoodsAccount(int number) {
+        showShortToast(number+"");
+
     }
 }

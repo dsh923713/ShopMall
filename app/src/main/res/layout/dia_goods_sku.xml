@@ -108,7 +108,7 @@
             android:textColor="@color/t313131"
             android:textSize="14sp"/>
 
-        <ren.qinc.numberbutton.NumberButton
+        <com.zmq.shopmall.widget.NumberButton
             android:id="@+id/number_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -21,6 +21,7 @@ import com.zmq.shopmall.fragmen.GoodsDetailFragment;
 import com.zmq.shopmall.fragmen.GoodsInfoFragment;
 import com.zmq.shopmall.widget.CustomPopWindow;
 import com.zmq.shopmall.widget.NoScrollViewPager;
+import com.zmq.shopmall.widget.NumberButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,6 @@ import java.util.Map;
 import butterknife.BindView;
 import me.shaohui.bottomdialog.BaseBottomDialog;
 import me.shaohui.bottomdialog.BottomDialog;
-import ren.qinc.numberbutton.NumberButton;
 
 /**
  * Created by Administrator on 2017/6/7.

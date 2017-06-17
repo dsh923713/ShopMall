@@ -85,6 +85,7 @@
     <color name="tfffc00">#fffc00</color>
     <color name="tdfdc00">#dfdc00</color>
     <color name="te7b517">#e7b517</color>
+    <color name="divider">#999999</color>
     <!--离线地图 -->
     <color name="grey">#ebebeb</color>
     <color name="darkgrey">#C0C0C0</color>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@drawable/shape_login_white"
-              android:gravity="center"
-              android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_login_white"
+                android:gravity="center"
+                android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rl_recommend"
@@ -27,11 +27,11 @@
             android:layout_alignParentTop="true"
             android:background="@mipmap/ic_rank_bg"
             android:gravity="center"
+            android:paddingBottom="2dp"
             android:text="1"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:paddingBottom="2dp"
             android:visibility="gone"/>
     </RelativeLayout>
 
@@ -39,18 +39,19 @@
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_recommend"
         android:ellipsize="end"
         android:maxLines="2"
-        android:layout_below="@+id/rl_recommend"
-        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
         android:text="HTCJD大家的的三六九等萨阿德放假了的数据发了多少积分卡的死发大幅大事发生大"
         android:textColor="@color/black"
         android:textSize="12sp"/>
 
     <LinearLayout
-        android:layout_below="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
         android:gravity="center"
         android:padding="5dp">
 
@@ -72,7 +73,10 @@
             android:layout_weight="0"
             android:background="@drawable/rv_classify_left_color"
             android:gravity="right"
-            android:padding="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
             android:text="@string/findSimilar"
             android:textColor="@color/t313131"
             android:textSize="12sp"
