@@ -22,6 +22,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.nuptboyzhb.lib.SuperSwipeRefreshLayout;
 import com.zmq.shopmall.R;
 import com.zmq.shopmall.activity.GoodsDetailsActivity;
+import com.zmq.shopmall.activity.LoginActivity;
 import com.zmq.shopmall.adapter.GoodShopTrolleyAdapter;
 import com.zmq.shopmall.adapter.HomeFootAdapter;
 import com.zmq.shopmall.base.BaseFragment;
@@ -220,9 +221,12 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
         });
     }
 
-    @OnClick({R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up, R.id.cb_all, R.id.ll_goto_account})
+    @OnClick({R.id.tv_login,R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up, R.id.cb_all, R.id.ll_goto_account})
     void onClick(View v) {
         switch (v.getId()) {
+            case R.id.tv_login:
+                startActivity(LoginActivity.class);
+                break;
             case R.id.tv_good_goods:
                 showShortToast("抢好货");
                 break;

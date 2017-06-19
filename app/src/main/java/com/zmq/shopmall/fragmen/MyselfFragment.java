@@ -10,10 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zmq.shopmall.R;
+import com.zmq.shopmall.activity.LoginActivity;
 import com.zmq.shopmall.activity.NewsActivity;
+import com.zmq.shopmall.activity.SetActivity;
 import com.zmq.shopmall.base.BaseFragment;
 
 import butterknife.BindView;
@@ -28,8 +31,8 @@ public class MyselfFragment extends BaseFragment {
     ImageView ivBg; //背景图
     @BindView(R.id.iv_user)
     ImageView ivUser;//用户
-    @BindView(R.id.iv_user_max)
-    ImageView ivUserMax; //用户大头像
+    @BindView(R.id.ll_user_login)
+    LinearLayout llUserLogin; //用户大头像
     @BindView(R.id.toolbar)
     Toolbar toolbar; //标题栏
     @BindView(R.id.collapsing)
@@ -89,21 +92,21 @@ public class MyselfFragment extends BaseFragment {
         });
     }
 
-    @OnClick({R.id.iv_user, R.id.iv_user_max, R.id.iv_news, R.id.iv_set, R.id.tv_obligation, R.id.tv_wait_for_receive, R.id
+    @OnClick({R.id.iv_user, R.id.ll_user_login, R.id.iv_news, R.id.iv_set, R.id.tv_obligation, R.id.tv_wait_for_receive, R.id
             .tv_no_evaluated, R.id.tv_after_sale, R.id.tv_my_order})
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_user: //用户
-                showShortToast("用户");
+                startActivity(LoginActivity.class);
                 break;
-            case R.id.iv_user_max: //用户大头像
-                showShortToast("用户");
+            case R.id.ll_user_login: //用户大头像
+                startActivity(LoginActivity.class);
                 break;
             case R.id.iv_news: //消息
                 startActivity(NewsActivity.class);
                 break;
             case R.id.iv_set: //设置
-                showShortToast("设置");
+                startActivity(SetActivity.class);
                 break;
             case R.id.tv_obligation: //待付款
                 showShortToast("待付款");

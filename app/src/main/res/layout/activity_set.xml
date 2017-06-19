@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/grey"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar_title"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_user_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableLeft="@mipmap/ic_user_grey"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/ic_right"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="@string/login_and_register"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_vip_clup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/vip_clup"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_plus_vip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/plus_vip"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_address_administration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/address_administration"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_real_name_authentication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/real_name_authentication"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_account_security"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/account_security"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/line_color"/>
+
+            <TextView
+                android:id="@+id/tv_connected_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_white_to_gray"
+                android:drawableRight="@mipmap/ic_right"
+                android:padding="10dp"
+                android:text="@string/connected_account"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

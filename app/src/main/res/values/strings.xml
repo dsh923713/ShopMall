@@ -56,6 +56,13 @@
     
     
     <string name="login">登录</string>
+    <string name="et_login">用户名/邮箱/手机号</string>
+    <string name="password">密码</string>
+    <string name="et_password">请输入密码</string>
+    <string name="phone_register">手机快速注册</string>
+    <string name="find_password">找回密码</string>
+    <string name="login_and_register">登录/注册</string>
+    
     <string name="login_synchronization">登录后同步电脑与手机购物车中的商品</string>
     <string name="shopping_trolley_isempty">购物车是空的</string>
     <string name="rush">抢618好货</string>
@@ -71,5 +78,12 @@
     <string name="count">数量</string>
     <string name="all_selected">全选</string>
     <string name="goto_account">去结算</string>
+
+    <string name="vip_clup">会员俱乐部</string>
+    <string name="plus_vip">PLUS会员</string>
+    <string name="address_administration">地址管理</string>
+    <string name="real_name_authentication">实名认证</string>
+    <string name="account_security">账户安全</string>
+    <string name="connected_account">关联账号</string>
 
 </resources>
