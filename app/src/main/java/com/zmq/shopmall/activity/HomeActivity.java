@@ -1,7 +1,6 @@
 package com.zmq.shopmall.activity;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
 import com.jpeng.jptabbar.JPTabBar;
 import com.jpeng.jptabbar.OnTabSelectListener;
 import com.zaaach.citypicker.CityPickerActivity;
@@ -21,8 +18,6 @@ import com.zmq.shopmall.fragmen.HomeFragment;
 import com.zmq.shopmall.fragmen.MyselfFragment;
 import com.zmq.shopmall.fragmen.ShopTrolleyFragment;
 import com.zmq.shopmall.fragmen.SpecialOfferFragment;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -36,29 +31,22 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private JPTabBar mTabbar; //底部Tab
     @BindView(R.id.tv_city)
     TextView tvCity;//定位城市
-    @BindView(R.id.tv_title)
-    TextView tvTitle;//搜索商品
+    @BindView(R.id.rl_search)
+    RelativeLayout rlSearch; //搜索
     @BindView(R.id.tv_news)
     TextView tvNews; //消息
+    @BindView(R.id.iv_voice)
+    ImageView ivVoice;//语音
 
 
     private HomeFragment homeFragment;
     private ClassifyFragment classifyFragment;
     private ShopTrolleyFragment shopTrolleyFragment;
+    private MyselfFragment myselfFragment;
 
     private static final int resId = R.id.content;
     private static final int REQUEST_CODE_PICK_CITY = 1;
-    private MyselfFragment myselfFragment;
 
-    private String[] mTitles = {"首页", "分类", "特惠", "购物车", "我的"};
-    private int[] mIconUnselectIds = {R.mipmap.ic_home, R.mipmap.ic_classify, R.mipmap.ic_special_offer, R.mipmap
-            .ic_shopping_trolley, R.mipmap.ic_myself};
-    private int[] mIconSelectIds = {R.mipmap.ic_home_selected, R.mipmap.ic_classify_selected, R.mipmap
-            .ic_special_offer_selected, R.mipmap.ic_shopping_trolley_selected, R.mipmap.ic_myself_selected};
-    private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-    private View mDecorView;
-    private CommonTabLayout commonTabLayout;
 
     public HomeActivity() {
         super(R.layout.activity_home);
@@ -67,74 +55,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initView() {
-        tvCity.setOnClickListener(this);
-        tvTitle.setOnClickListener(this);
-        tvNews.setOnClickListener(this);
         ivNews.setOnClickListener(this);
+        tvCity.setOnClickListener(this);
+        rlSearch.setOnClickListener(this);
+        tvNews.setOnClickListener(this);
+        ivVoice.setOnClickListener(this);
+
         homeFragment = new HomeFragment();
         classifyFragment = new ClassifyFragment();
         shopTrolleyFragment = new ShopTrolleyFragment();
         myselfFragment = new MyselfFragment();
         setBottomTab();
-
-//        for (int i = 0; i < mTitles.length; i++) {
-//            LogUtils.d(mTitles[i]);
-//            mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));
-//        }
-//        mFragments.add(homeFragment);
-//        mFragments.add(classifyFragment);
-//        mFragments.add(new SpecialOfferFragment());
-//        mFragments.add(shopTrolleyFragment);
-//        mFragments.add(myselfFragment);
-//        mDecorView = getWindow().getDecorView();
-//        commonTabLayout = ViewFindUtils.find(mDecorView,R.id.ctl_tab);
-//
-//        commonTabLayout.setTabData(mTabEntities,this,R.id.content,mFragments);
-//        commonTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
-//            @Override
-//            public void onTabSelect(int position) {
-//                switch (position) {
-//                    case 0:  //首页
-//                        setLeftIcon(true);
-//                        setTitle("");
-//                        setRightIcon(true);
-//                        indexTitleBar.setVisibility(View.VISIBLE);
-//                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.blue));
-//                        break;
-//                    case 1:  //分类
-//                        setLeftIcon(true);
-//                        setTitle("");
-//                        setRightIcon(true);
-//                        indexTitleBar.setVisibility(View.VISIBLE);
-//                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.blue));
-//                        break;
-//                    case 2:  //特惠
-//                        setLeftIcon(true);
-//                        setTitle("");
-//                        setRightIcon(true);
-//                        indexTitleBar.setVisibility(View.VISIBLE);
-//                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.colorAccent));
-//                        break;
-//                    case 3:  //购物车
-//                        setLeftIcon(false);
-//                        setTitle("购物车");
-//                        setRightIcon(false);
-//                        indexTitleBar.setVisibility(View.VISIBLE);
-//                        indexTitleBar.setBackgroundColor(ContextCompat.getColor(HomeActivity.this, R.color.white));
-//                        break;
-//                    case 4:  //我的
-//                        indexTitleBar.setVisibility(View.GONE);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onTabReselect(int position) {
-//
-//            }
-//        });
     }
 
     /**
@@ -215,11 +146,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
      */
     public void setTitle(String title) {
         if (!TextUtils.isEmpty(title)) {
-            tvTitle.setVisibility(View.GONE);
+            rlSearch.setVisibility(View.GONE);
             tvTitleName.setVisibility(View.VISIBLE);
             tvTitleName.setText(title);
         } else {
-            tvTitle.setVisibility(View.VISIBLE);
+            rlSearch.setVisibility(View.VISIBLE);
             tvTitleName.setVisibility(View.GONE);
         }
     }
@@ -244,8 +175,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             case R.id.tv_city: //左侧定位
                 startActivityForResult(CityPickerActivity.class, REQUEST_CODE_PICK_CITY);
                 break;
-            case R.id.tv_title: //中间标题/搜索栏
+            case R.id.rl_search: //中间标题/搜索栏
                 startActivity(SearchActivity.class);
+                break;
+            case R.id.iv_voice: //中间标题/搜索栏
+                showShortToast("语音");
                 break;
             case R.id.tv_news://右侧消息
                 startActivity(NewsActivity.class);

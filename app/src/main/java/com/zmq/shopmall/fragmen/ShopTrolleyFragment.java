@@ -92,10 +92,10 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
     protected void initView(View view) {
         setOfYouData();
         setRefresh();
-        ofYouAdapter = new HomeFootAdapter(data);
+        ofYouAdapter = new HomeFootAdapter(2, data);
         rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 2));
         rvShopOfYou.setAdapter(ofYouAdapter);
-        shopTrolleyAdapter = new GoodShopTrolleyAdapter(this,shopTrolleyBeen);
+        shopTrolleyAdapter = new GoodShopTrolleyAdapter(this, shopTrolleyBeen);
         rvShopTrolley.setLayoutManager(new LinearLayoutManager(activity));
         rvShopTrolley.setAdapter(shopTrolleyAdapter);
         ofYouAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -132,7 +132,7 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
             }
         });
 
-       //适配器子布局点击事件
+        //适配器子布局点击事件
         shopTrolleyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -221,7 +221,7 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
         });
     }
 
-    @OnClick({R.id.tv_login,R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up, R.id.cb_all, R.id.ll_goto_account})
+    @OnClick({R.id.tv_login, R.id.tv_good_goods, R.id.tv_look_follow, R.id.fab_up, R.id.cb_all, R.id.ll_goto_account})
     void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_login:
@@ -276,7 +276,7 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
 
     @Override
     public void getGoodsAccount(int number) {
-        showShortToast(number+"");
+        showShortToast(number + "");
 
     }
 }

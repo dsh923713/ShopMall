@@ -89,7 +89,7 @@ public class HomeFragment extends BaseFragment implements IDynamicSore<ButtonBea
 
 
         rvFoot.setLayoutManager(new GridLayoutManager(activity, 2));
-        homeFootAdapter = new HomeFootAdapter(footData);
+        homeFootAdapter = new HomeFootAdapter(0,footData);
         rvFoot.setAdapter(homeFootAdapter);
         homeFootAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
