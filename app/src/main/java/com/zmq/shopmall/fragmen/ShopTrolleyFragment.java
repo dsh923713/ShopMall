@@ -92,7 +92,7 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
     protected void initView(View view) {
         setOfYouData();
         setRefresh();
-        ofYouAdapter = new HomeFootAdapter(2, data);
+        ofYouAdapter = new HomeFootAdapter(data);
         rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 2));
         rvShopOfYou.setAdapter(ofYouAdapter);
         shopTrolleyAdapter = new GoodShopTrolleyAdapter(this, shopTrolleyBeen);

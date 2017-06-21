@@ -174,7 +174,7 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         setRankData();
         list.addAll(recommendBeanList);
         rvShopOfYou.setLayoutManager(new GridLayoutManager(activity, 3));
-        recommendAdapter = new HomeFootAdapter(1,list);
+        recommendAdapter = new HomeFootAdapter(list);
         rvShopOfYou.setAdapter(recommendAdapter);
     }
 

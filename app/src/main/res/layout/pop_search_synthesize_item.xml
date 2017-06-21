@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/two_percent_white"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_synthesize_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableRight="@mipmap/ic_tick"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/synthesize_sort"
+        android:textColor="@color/red"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/tv_new_goods"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/new_goods"
+        android:textColor="@color/gary"
+        android:textSize="13sp"/>
+
+    <TextView
+        android:id="@+id/tv_recommend_priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/recommend_from_hight_to_low"
+        android:textColor="@color/gary"
+        android:textSize="13sp"/>
+</LinearLayout>

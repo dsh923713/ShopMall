@@ -90,5 +90,11 @@
     <string name="sales_volume">销量</string>
     <string name="price">价格</string>
     <string name="filtrate">筛选</string>
+    
+    <string name="delivery">快递配送</string>
+    <string name="brand">品牌</string>
 
+    <string name="synthesize_sort">综合排序</string>
+    <string name="new_goods">新品优先</string>
+    <string name="recommend_from_hight_to_low">评价数从高到低</string>
 </resources>
