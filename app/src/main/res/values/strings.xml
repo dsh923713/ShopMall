@@ -97,4 +97,6 @@
     <string name="synthesize_sort">综合排序</string>
     <string name="new_goods">新品优先</string>
     <string name="recommend_from_hight_to_low">评价数从高到低</string>
+    
+    <string name="price_section">价格区间</string>
 </resources>

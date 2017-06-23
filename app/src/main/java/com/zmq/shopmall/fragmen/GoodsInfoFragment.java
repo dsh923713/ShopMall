@@ -422,6 +422,13 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         dialog.show();
     }
 
+    /**
+     * 地址选择
+     * @param province
+     * @param city
+     * @param county
+     * @param street
+     */
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
         String address = (province == null ? "" : province.name) + " -> " + (city == null ? "" : city.name) + " -> " + (county
@@ -468,6 +475,10 @@ public class GoodsInfoFragment extends BaseFragment implements SlideDetailsLayou
         rankList.add(new RecommendBean(R.mipmap.ic_timg, "Letv/乐视LETV体感-超级枪V超级电视产品玩具体感游戏枪 电玩道具黑色", 152.00, false, false, true));
     }
 
+    /**
+     * 获取商品属性设置显示
+     * @param attribute
+     */
     @Override
     public void getGoodsAttribute(String attribute) {
         tvCurrentGoods.setText(mActivity.attribute);

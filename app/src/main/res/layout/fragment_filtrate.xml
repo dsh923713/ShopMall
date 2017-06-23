@@ -1,231 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/white"
               android:orientation="vertical">
 
-    <RelativeLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:background="@mipmap/ic_back"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="筛选"/>
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/serve"/>
+
+                <TextView
+                    android:id="@+id/tv_delivery_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/cp_ic_locate"
+                    android:drawablePadding="5dp"
+                    android:text="@string/cp_select_city"/>
+            </RelativeLayout>
+
+            <!--<com.google.android.flexbox.FlexboxLayout-->
+            <!--android:id="@+id/rg_task_group"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:alignItems="stretch"-->
+            <!--app:flexDirection="row"-->
+            <!--app:flexWrap="wrap"-->
+            <!--app:justifyContent="flex_start">-->
+
+            <!--<CheckBox-->
+            <!--android:id="@+id/cb_task_total"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/select_check_red_to_white"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="item1"-->
+            <!--android:textColor="@color/black"/>-->
+
+            <!--<CheckBox-->
+            <!--android:id="@+id/cb_assigning"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/select_check_red_to_white"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="item2"-->
+            <!--android:textColor="@color/black"/>-->
+
+            <!--<CheckBox-->
+            <!--android:id="@+id/cb_no_assigning"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/select_check_red_to_white"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="item3"-->
+            <!--android:textColor="@color/black"/>-->
+
+            <!--<CheckBox-->
+            <!--android:id="@+id/cb_item4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/select_check_red_to_white"-->
+            <!--android:button="@null"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingLeft="20dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:text="item4"-->
+            <!--android:textColor="@color/black"/>-->
+            <!--</com.google.android.flexbox.FlexboxLayout>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_filtrate_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/price_section"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <EditText
+                    android:id="@+id/et_low_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_hot_search_grey"
+                    android:gravity="center"
+                    android:hint="最低价"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gary"
+                    android:textSize="12sp"/>
+
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="@color/gary"/>
+
+                <EditText
+                    android:id="@+id/et_height_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_hot_search_grey"
+                    android:gravity="center"
+                    android:hint="最高价"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gary"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/rg_price_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <RadioButton
+                    android:id="@+id/rb_price_select1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_check_red_to_white"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="12-30 \n 32%选择"
+                    android:textColor="@color/black_to_red"
+                    android:textSize="9sp"/>
+
+                <RadioButton
+                    android:id="@+id/rb_price_select2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_check_red_to_white"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="31-60 \n 32%选择"
+                    android:textColor="@color/black_to_red"
+                    android:textSize="9sp"/>
+
+                <RadioButton
+                    android:id="@+id/rb_price_select3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/select_check_red_to_white"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="2dp"
+                    android:text="61-110 \n 26%选择"
+                    android:textColor="@color/black_to_red"
+                    android:textSize="9sp"/>
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"/>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_all_classify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="全部分类"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:drawablePadding="5dp"
+                    android:drawableRight="@mipmap/ic_right"
+                    android:text="全部"
+                    android:textColor="@color/gary"
+                    android:textSize="13sp"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_color"/>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_classify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/line_color"/>
-
-    <LinearLayout
-        android:id="@+id/ll_task_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="选择"/>
-
-        <RadioGroup
-            android:id="@+id/rg_task_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
-            >
-
-            <RadioButton
-                android:id="@+id/rb_task_total"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_goods_sku_red"
-                android:button="@null"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="item1"
-                android:textColor="@color/red"
-                />
-
-            <RadioButton
-                android:id="@+id/rb_assigning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_login_white"
-                android:button="@null"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="item2"
-                android:textColor="@color/black"
-                />
-
-            <RadioButton
-                android:id="@+id/rb_no_assigning"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/shape_login_white"
-                android:button="@null"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="item3"
-                android:textColor="@color/black"/>
-        </RadioGroup>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/line_color"/>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/rl_department"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="部门"/>
-
-        <ImageView
-            android:id="@+id/department_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@mipmap/ic_right"
-            />
-
-        <TextView
-            android:id="@+id/department_selected"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView2"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_toLeftOf="@+id/department_arrow"
-            android:layout_toStartOf="@+id/department_arrow"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="全部"
-            android:textColor="@color/black"/>
-    </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_color"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:drawablePadding="5dp"
-            android:gravity="center"
-            android:text="type"
-            />
-
-        <TextView
-            android:id="@+id/class_selected"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/class_arrow"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:text="全部"
-            android:textColor="@color/black"
-            />
-
-        <ImageView
-            android:id="@+id/class_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@mipmap/ic_right"
-            />
-    </RelativeLayout>
-
-    <GridView
-        android:id="@+id/gv_patrol_item"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="1"
-        android:numColumns="2"
-        android:verticalSpacing="5dp"
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_reset"
+        <TextView
+            android:id="@+id/tv_reset"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/white"
+            android:gravity="center"
+            android:padding="15dp"
             android:text="重置"
             android:textColor="@color/black"/>
 
-        <Button
-            android:id="@+id/btn_confirm"
+        <TextView
+            android:id="@+id/tv_confirm"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@color/red"
+            android:gravity="center"
+            android:padding="15dp"
             android:text="确定"
             android:textColor="@color/white"/>
     </LinearLayout>
