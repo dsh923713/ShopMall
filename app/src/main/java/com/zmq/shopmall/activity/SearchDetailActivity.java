@@ -94,7 +94,7 @@ public class SearchDetailActivity extends BaseActivity {
         rvSearch.setAdapter(detailAdapter);
         setRvonScrollListener();
         ViewGroup.LayoutParams params = dlContent.getLayoutParams();
-        params.width = (int) (ScreenUtil.getScreenWidthPix(this)*0.8);
+        params.width = (int) (ScreenUtil.getScreenWidthPix(this)*0.85);
 //        params.height = (int) (ScreenUtil.getScreenHeightPix(this)*0.9);
         dlContent.setLayoutParams(params);
         replaceFragment(R.id.dl_content, new FiltrateFragment());

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_classify_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="品牌"
+            android:textColor="@color/t313131"
+            android:textSize="13sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_all_classify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5dp"
+            android:drawableRight="@mipmap/ic_down_up"
+            android:maxLines="1"
+            android:maxLength="10"
+            android:ellipsize="end"
+            android:text="@string/all"
+            android:textColor="@color/t646464"
+            android:textSize="13sp"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_item_classify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

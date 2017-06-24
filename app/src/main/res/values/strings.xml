@@ -99,4 +99,6 @@
     <string name="recommend_from_hight_to_low">评价数从高到低</string>
     
     <string name="price_section">价格区间</string>
+    <string name="all">全部</string>
+    <string name="all_classify">全部分类</string>
 </resources>

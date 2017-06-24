@@ -25,7 +25,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="@string/serve"/>
+                    android:text="@string/delivery"
+                    android:textColor="@color/t313131"
+                    android:textSize="13sp"/>
 
                 <TextView
                     android:id="@+id/tv_delivery_city"
@@ -33,9 +35,11 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:drawableLeft="@mipmap/cp_ic_locate"
-                    android:drawablePadding="5dp"
-                    android:text="@string/cp_select_city"/>
+                    android:drawableLeft="@mipmap/ic_location_red"
+                    android:drawablePadding="3dp"
+                    android:text="@string/cp_select_city"
+                    android:textColor="@color/red"
+                    android:textSize="13sp"/>
             </RelativeLayout>
 
             <!--<com.google.android.flexbox.FlexboxLayout-->
@@ -122,14 +126,18 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_filtrate_service"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/price_section"/>
+                android:text="@string/price_section"
+                android:textColor="@color/t313131"
+                android:textSize="13sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -256,7 +264,7 @@
                     android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/ic_right"
                     android:text="全部"
-                    android:textColor="@color/gary"
+                    android:textColor="@color/t666666"
                     android:textSize="13sp"/>
 
             </RelativeLayout>
@@ -272,7 +280,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:nestedScrollingEnabled="false"
+                android:paddingLeft="10dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
