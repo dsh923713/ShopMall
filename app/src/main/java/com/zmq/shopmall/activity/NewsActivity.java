@@ -48,7 +48,7 @@ public class NewsActivity extends BaseActivity {
         setRightIcon(R.mipmap.ic_calendar, "", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showShortToast("日历");
+                startActivity(MyCalendarActivity.class);
            }
         });
 

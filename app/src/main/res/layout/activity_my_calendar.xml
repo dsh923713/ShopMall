@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <include layout="@layout/toolbar_title"/>
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
-        android:id="@+id/stl_specical"
+        android:id="@+id/stl_calendar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:stl_clickable="true"
@@ -33,10 +35,10 @@
         app:stl_overlineThickness="0dp"
         app:stl_titleOffset="auto_center"
         app:stl_underlineColor="#4D000000"
-        app:stl_underlineThickness="1dp" />
+        app:stl_underlineThickness="1dp"/>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/vp_special"
+        android:id="@+id/vp_calendar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 </LinearLayout>

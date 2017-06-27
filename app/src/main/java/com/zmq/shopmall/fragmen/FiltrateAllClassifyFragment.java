@@ -2,6 +2,7 @@ package com.zmq.shopmall.fragmen;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/6/24.
@@ -32,6 +34,8 @@ public class FiltrateAllClassifyFragment extends BaseFragment {
     @BindView(R.id.rv_filtrate_all_classify)
     RecyclerView rvFiltrateAllClassify;
     List<MultiItemEntity> data;
+    private FragmentManager fragmentManager;
+    private FiltrateAllClassifyAdapter adapter;
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,29 +46,38 @@ public class FiltrateAllClassifyFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         data = generateData();
+        fragmentManager = getFragmentManager();
         rvFiltrateAllClassify.setLayoutManager(new LinearLayoutManager(activity));
-        rvFiltrateAllClassify.setAdapter(new FiltrateAllClassifyAdapter(data));
+        adapter = new FiltrateAllClassifyAdapter(fragmentManager, data);
+        rvFiltrateAllClassify.setAdapter(adapter);
     }
 
     private ArrayList<MultiItemEntity> generateData() {
-        int lv0Count = 9;
+        int lv0Count = 1;
         int lv1Count = 3;
         int personCount = 5;
 
         String[] nameList = {"Bob", "Andy", "Lily", "Brown", "Bruce"};
 
         ArrayList<MultiItemEntity> res = new ArrayList<>();
-        for (int i = 0; i < lv0Count; i++) {
-            FiltrateItem lv0 = new FiltrateItem();
-            for (int j = 0; j < lv1Count; j++) {
-                FiltrateItem1 lv1 = new FiltrateItem1("Level 1 item: " + j);
-                for (int k = 0; k < personCount; k++) {
-                    lv1.addSubItem(new FiltrateItemContent(nameList[k]));
-                }
-                lv0.addSubItem(lv1);
+        FiltrateItem lv0 = new FiltrateItem();
+        res.add(lv0);
+        for (int j = 0; j < lv1Count; j++) {
+            FiltrateItem1 lv1 = new FiltrateItem1("Level 1 item: " + j);
+            for (int k = 0; k < nameList.length; k++) {
+                lv1.addSubItem(new FiltrateItemContent(nameList[k]));
             }
-            res.add(lv0);
+            res.add(lv1);
         }
         return res;
+    }
+
+    @OnClick({R.id.iv_back})
+    void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_back:
+                fragmentManager.popBackStack();//将当前fragment回退
+                break;
+        }
     }
 }

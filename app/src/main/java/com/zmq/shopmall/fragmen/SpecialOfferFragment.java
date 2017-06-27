@@ -35,11 +35,11 @@ public class SpecialOfferFragment extends BaseFragment {
     @Override
     protected void initView(View view) {
         adapter = new FragmentPagerItemAdapter(activity.getSupportFragmentManager(), FragmentPagerItems.with(activity).add(R
-                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R
-                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R
-                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R
-                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R
-                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).create());
+                .string.myself, MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R.string.myself,
+                MyselfFragment.class).add(R.string.classify, ClassifyFragment.class).add(R.string.myself, MyselfFragment.class)
+                .add(R.string.classify, ClassifyFragment.class).add(R.string.myself, MyselfFragment.class).add(R.string
+                        .classify, ClassifyFragment.class).add(R.string.myself, MyselfFragment.class).add(R.string.classify,
+                        ClassifyFragment.class).create());
         vpSpecial.setAdapter(adapter);
         stlSpecical.setViewPager(vpSpecial);
     }

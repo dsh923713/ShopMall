@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:jp="http://schemas.android.com/apk/res-auto"
+              xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:tl="http://schemas.android.com/tools"
               android:orientation="vertical">
 
-    <include layout="@layout/search_tool" />
+    <include layout="@layout/search_tool"/>
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
-    <com.jpeng.jptabbar.JPTabBar
-        android:id="@+id/tabbar"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="#fff"
-        jp:TabTextSize="12sp" />
+        android:layout_height="1dp"
+        android:background="@color/line_color"/>
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/ctl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        tl:tl_textSelectColor="@color/red"
+        tl:tl_textUnselectColor="@color/black"
+        tl:tl_underline_color="#DDDDDD"
+        tl:tl_underline_height="1dp"/>
 </LinearLayout>
