@@ -9,6 +9,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +32,12 @@ import com.zmq.shopmall.bean.RecommendBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.makeramen.roundedimageview.RoundedImageView.TAG;
 
 /**
  * Created by Administrator on 2017/6/12.
@@ -81,6 +85,7 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
     private AnimationDrawable anima;
     private List<GoodShopTrolleyBean> shopTrolleyBeen = new ArrayList<>();
     private GoodShopTrolleyAdapter shopTrolleyAdapter;
+    List<Boolean> isSelect = new ArrayList<Boolean>();//
 
     @Override
     protected View initContentView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -136,17 +141,22 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
         shopTrolleyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                //所有商品全部选中 则全选按钮选中
-                for (GoodShopTrolleyBean been : shopTrolleyBeen) {
-                    if (been.isChecked()) {
-                        cbAll.setChecked(true);
-                    }
-                }
                 if (shopTrolleyBeen.get(position).isChecked()) {
                     shopTrolleyBeen.get(position).setChecked(false);
                     cbAll.setChecked(false);
                 } else {
                     shopTrolleyBeen.get(position).setChecked(true);
+                }
+
+                isSelect.clear();
+                //所有商品全部选中 则全选按钮选中
+                for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                    isSelect.add(been.isChecked());
+                }
+                if (isSelect.contains(false)) {
+                    cbAll.setChecked(false);
+                } else {
+                    cbAll.setChecked(true);
                 }
                 shopTrolleyAdapter.notifyDataSetChanged();
             }
@@ -237,16 +247,13 @@ public class ShopTrolleyFragment extends BaseFragment implements GoodShopTrolley
                 nsvShopTrolley.smoothScrollTo(0, 0);
                 break;
             case R.id.cb_all: //全选
-                if (cbAll.isChecked()) {
-                    for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                    if (cbAll.isChecked()) {
                         been.setChecked(true);
-                    }
-                } else {
-                    for (GoodShopTrolleyBean been : shopTrolleyBeen) {
+                    } else {
                         been.setChecked(false);
                     }
                 }
-
                 shopTrolleyAdapter.notifyDataSetChanged();
                 break;
             case R.id.ll_goto_account: //去结算
